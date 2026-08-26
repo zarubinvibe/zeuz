@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "kind": "pantheon-generation",
+  "selection_mode": "managed-frontier",
+  "runtime": "codex",
+  "tool": "image_gen",
+  "route_id": "codex:image_gen:managed-frontier",
+  "model": {
+    "id": "provider-managed",
+    "revision": "provider-managed",
+    "tier": "frontier"
+  },
+  "quality": "highest",
+  "generation_id": "01a03e74-7385-7f71-8f26-532fcee7ef34",
+  "generated_at": "2026-08-26T14:33:52Z",
+  "capability_snapshot": {
+    "checked_at": "2026-08-26T14:33:52Z",
+    "routes": [
+      {
+        "id": "codex:image_gen:managed-frontier",
+        "rank": 1,
+        "available": true,
+        "tier": "frontier",
+        "quality": "highest",
+        "model": {
+          "id": "provider-managed",
+          "revision": "provider-managed",
+          "tier": "frontier"
+        }
+      }
+    ]
+  },
+  "prompt": {
+    "path": ".github/pantheon/prompt.txt",
+    "sha256": "23269fdc802309a97689866fcf83ec0fe5c08ce88c3544214e3eee249e0ff17c",
+    "format": "two exact asset prompts: hero and emblem"
+  },
+  "references": [
+    {
+      "role": "style-anchor",
+      "sha256": "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2"
+    },
+    {
+      "role": "column-reference",
+      "sha256": "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd"
+    }
+  ],
+  "asset_generations": [
+    {
+      "role": "hero",
+      "generation_id": "01a03e74-7385-7f71-8f26-532fcee7ef34",
+      "execution_id": "exec-26176cfd-81a7-4dd5-9b7b-a711cfee5016",
+      "generated_at": "2026-08-26T14:33:52Z",
+      "provider_output_sha256": "61b9a39deaf8aaf7bb42a63b28e03419628ffcb586804ca75dfb20669b916e07",
+      "postprocess": "resampled from 1672x941 to 2048x1152 with sips"
+    },
+    {
+      "role": "emblem",
+      "generation_id": "01a03e74-7385-7f71-8f26-532fcee7ef34",
+      "execution_id": "exec-6577ea81-cebb-45c5-aec6-dd0958b86d9b",
+      "generated_at": "2026-08-26T14:35:05Z",
+      "provider_output_sha256": "c97c55fc0c609eff23db3c731472e3568c291079b48bb01d1427e195c883430c",
+      "postprocess": "none"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "codex-managed",
+      "route_id": "codex:image_gen:managed-frontier",
+      "generation_id": "01a03e74-7385-7f71-8f26-532fcee7ef34",
+      "prompt_sha256": "23269fdc802309a97689866fcf83ec0fe5c08ce88c3544214e3eee249e0ff17c",
+      "reference_sha256": [
+        "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2",
+        "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd"
+      ],
+      "outputs": [
+        {
+          "role": "hero",
+          "source_sha256": "b403eea6060c1dab5d764d47f9967bbeb11c75afab4bf7272be2328ccfa24997",
+          "published_sha256": "b403eea6060c1dab5d764d47f9967bbeb11c75afab4bf7272be2328ccfa24997"
+        },
+        {
+          "role": "emblem",
+          "source_sha256": "c97c55fc0c609eff23db3c731472e3568c291079b48bb01d1427e195c883430c",
+          "published_sha256": "c97c55fc0c609eff23db3c731472e3568c291079b48bb01d1427e195c883430c"
+        }
+      ]
+    }
+  ],
+  "winner_id": "codex-managed"
+}

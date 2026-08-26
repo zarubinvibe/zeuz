@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "family_id": "zarubinvibe-pantheon",
+  "catalog_version": "2026-08-26",
+  "project": {
+    "slug": "zeuz",
+    "deity": "Zeus",
+    "symbol": "golden lightning bolt, governed workflow graph, and gates"
+  },
+  "visuals": {
+    "style_anchor_sha256": "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2",
+    "column_reference_sha256": "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd",
+    "hero": {
+      "source_path": "docs/assets/pantheon/hero.png",
+      "source_sha256": "b403eea6060c1dab5d764d47f9967bbeb11c75afab4bf7272be2328ccfa24997",
+      "published_path": "docs/assets/pantheon/hero.png",
+      "published_sha256": "b403eea6060c1dab5d764d47f9967bbeb11c75afab4bf7272be2328ccfa24997"
+    },
+    "emblem": {
+      "source_path": "docs/assets/pantheon/emblem.png",
+      "source_sha256": "c97c55fc0c609eff23db3c731472e3568c291079b48bb01d1427e195c883430c",
+      "published_path": "docs/assets/pantheon/emblem.png",
+      "published_sha256": "c97c55fc0c609eff23db3c731472e3568c291079b48bb01d1427e195c883430c"
+    }
+  },
+  "receipts": {
+    "generation_path": ".github/pantheon/generation-receipt.json",
+    "visual_judge_path": ".github/pantheon/visual-judge-receipt.json"
+  }
+}

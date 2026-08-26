@@ -19,7 +19,7 @@ const HOME = (typeof process !== 'undefined' && process.env && process.env.HOME)
 const ZEUZ_HOME = (typeof process !== 'undefined' && process.env && process.env.ZEUZ_HOME) || (HOME + '/Проекты/zeuz')
 const PROJECTS = (typeof process !== 'undefined' && process.env && process.env.ZEUZ_PROJECTS) || (HOME + '/Проекты')
 const CONST = ZEUZ_HOME + '/rules/best-practices.md'
-const SAMPLES = 'Образцы: ~/Полезные знания/99 Система/Протокол_Мнемозина.md · ~/Desktop/Протокол_Фемида.md'
+const SAMPLES = 'Опирайся только на правила и спецификации из текущего репозитория; не предполагай доступ к внешним частным образцам.'
 const ABTOP = HOME + '/.cargo/bin/abtop'
 // new Date()/Date.now() запрещены в workflow-скриптах (ломают resume). RUN_ID — дет. хэш спеки: уникален per-бренд, стабилен для resume.
 const __hash = (s) => { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(36) }

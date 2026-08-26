@@ -1,64 +1,153 @@
-# zeuz — factory of agentic workflow systems
+# Zeuz
+
+Zeuz is a workflow factory for agent harnesses. Given a complete specification, it asks a sequence of specialist agents to design, write, and inspect a new multi-agent workflow system.
+
+[Quickstart](#quickstart) · [Example](#example-run) · [Security](#security-and-privacy) · [Contributing](CONTRIBUTING.md) · [Русский](README.ru.md)
 
 <p align="center">
-  <img src="docs/assets/zeuz-hero.png" alt="Zeus the father-creator at his forge, sculpting a glowing system into being" width="100%">
+  <img src="docs/assets/pantheon/emblem.png" alt="Zeuz emblem with Zeus, a golden lightning bolt, a gated workflow graph, and a marble column" width="144">
 </p>
 
-**Zeuz** is a factory: from an idea it births a complete agentic workflow system of the Femida/Mnemozina class. It runs the spec through six inventor-masters (Russian scientists, role = character) and bakes a constitution into every system it produces.
+![Zeuz Pantheon hero showing Zeus beside a gated workflow graph and a classical marble column](docs/assets/pantheon/hero.png)
 
-## Why
+> Current status: reference implementation. The repository includes the workflow source, agent prompts, design rules, and a static smoke test. It does not include a standalone runner or a full end-to-end fixture.
 
-Building a multi-agent system by hand is slow and easy to get wrong: one step skips the gate before an irreversible action, another burns tokens where Haiku would do, a third leaves a hole in coverage. Zeuz takes that off your plate. You bring an idea — it interrogates it into a full spec, casts the roles, draws the architecture with gates, budgets the tokens, writes the files, and tests the result before handoff. What you get is a working system under one constitution, not a pile of loose prompts.
+## Quickstart
 
-Who it's for: anyone building not a single workflow but a family of them, who wants every new system born to the same standard — observability, replay, and control over irreversible actions baked in.
-
-## Flow
-
-<p align="center">
-  <img src="docs/assets/zeuz-pipeline.png" alt="Six master-sages at workbenches: an idea passes down the line, growing into a finished system" width="92%">
-</p>
-
-```text
-"need a new workflow/system"
-   → Stage 0: Lobachevsky + /grill-me  (spec: goal · input+volume · completeness invariant · constraints)
-   → Workflow({ name: 'zeuz-pipeline', args: spec })
-       0 Observe (abtop, CTX gate) → 1 Markov (cast souls) → 2 Shukhov (architecture + gates)
-       → 3 Kotelnikov (token economy + model-per-function) → 4 DAG artifact
-       → 5 Lebedev (write files) → 6 Zvorykin (test → verdict)
-   → Zeuz: Graphify (if knowledge) · mirror Codex+VPS · deliver
-```
-
-## Layout (Athena schema)
-
-| Path | What |
-|---|---|
-| `CLAUDE.md` | thin router: map, autostart, conventions |
-| `rules/best-practices.md` | **constitution** — baked into every birthed system |
-| `specs/00-roadmap.md` | factory flow + team (read first) |
-| `agents/*.md` | 6 master souls + `zeuz.md` overseer |
-| `workflows/zeuz-pipeline.js` | active workflow with code-enforced gates |
-| `docs/decisions/` | ADRs |
-| `smoke/smoke.sh` | gate: `node --check` + grep invariants |
-| `runs/` | runtime (observability, DAG; gitignored) |
-
-## Gates
-
-<p align="center">
-  <img src="docs/assets/zeuz-gates.png" alt="A sealed marble gate before a threshold of fire: passage only when the seal verifies" width="92%">
-</p>
-
-Every irreversible action (archive, publish, `mv`) sits behind a `## NAME ✓` marker that a code check must satisfy first — no gate, no passage.
+Requirements: Bash and Node.js.
 
 ```bash
-smoke/smoke.sh   # node --check pipeline + grep gates/observability/souls/schema
+git clone https://github.com/zarubinvibe/zeuz.git
+cd zeuz
+bash smoke/smoke.sh
 ```
 
-## One constitution, baked in
+The final line should be:
 
-<p align="center">
-  <img src="docs/assets/zeuz-constitution.png" alt="A law engraved in stone, its light flowing into every small system born below" width="92%">
-</p>
+```text
+ГЕЙТ ПРОЙДЕН ✓
+```
 
-`rules/best-practices.md` is the source of truth. Every system Zeuz births inherits the same spine: harness > model, completeness gates in code, swarm economy, context-as-budget, token thrift, Run Observatory, DAG/replay, artifact lineage, model-per-function.
+That result proves that Node can parse the workflow inside its async wrapper and that the factory source still contains the required observability, DAG, context-gate, schema, agent, and repository-layout markers. It does not run the specialist agents.
 
-See [README.ru.md](README.ru.md) for the Russian version.
+## Run it in a host
+
+`workflows/zeuz-pipeline.js` expects a workflow host that provides `args`, `phase()`, `agent()`, and `log()`. The host must also support structured agent output through the `schema` option.
+
+Point Zeuz at the checkout and choose a parent directory for generated projects:
+
+```bash
+export ZEUZ_HOME="$PWD"
+export ZEUZ_PROJECTS="$PWD/../zeuz-output"
+```
+
+Register `workflows/zeuz-pipeline.js` with the host, then invoke it with a complete specification:
+
+```js
+Workflow({
+  name: 'zeuz-pipeline',
+  args: `
+Goal: build a workflow that reviews release notes before publication.
+Input: Markdown files, up to 50 per run.
+Completeness invariant: every input file has a recorded verdict.
+Constraints: no publication without approval; keep an audit trail.
+Done when: the ledger contains one verdict for every input file.
+  `.trim(),
+})
+```
+
+The pipeline rejects a missing or very short specification. The interactive `/grill-me` step named in the agent instructions belongs to the host setup and is not shipped in this repository.
+
+## Example run
+
+The workflow moves through these phases:
+
+| Phase | What the checked-in source asks the agent to produce |
+|---|---|
+| Observe | A local runtime snapshot in `runs/_observability.jsonl`; `abtop` is optional |
+| Cast | Role definitions and verified scientist personas |
+| Architect | Stages, parallel boundaries, deterministic gate requirements, and a graph |
+| Economize | A model map and context-saving measures for each stage |
+| Build | Agent files, a workflow, a protocol, `CLAUDE.md`, and a plan DAG |
+| Test | Syntax, gate, observability, lineage, persona, and dry-run findings plus a verdict |
+
+Generated files go under `ZEUZ_PROJECTS/<system-slug>/`. The exact list requested by the build prompt is:
+
+```text
+agents/<scientist-slug>.md
+<system-slug>-pipeline.js
+PROTOCOL-<system-slug>.md
+CLAUDE.md
+runs/<run-id>-plan.dag.json
+```
+
+The final return value uses `status: "done"` only when the tester returns the verdict `ГОТОВА`. Other verdicts return `status: "needs_fix"` with the reported issues.
+
+## Gates and evidence
+
+The architect and builder prompts require generated workflows to protect irreversible actions with deterministic checks. The tester prompt inspects those checks before returning a verdict. The factory's own smoke test is narrower: it checks source syntax and invariant markers with `node --check`, file checks, and fixed-string searches.
+
+For reviewable evidence, keep the generated project in a separate directory, inspect its files, and run its own tests before allowing publish, archive, move, or deployment actions.
+
+## Security and privacy
+
+- File access: build agents are instructed to write under `ZEUZ_PROJECTS`; observability writes under `ZEUZ_HOME/runs`.
+- Shell access: the Observe and Test prompts invoke local commands. The host decides sandboxing and approvals.
+- Network access: the Cast prompt asks the host to verify biographical facts on the web. Zeuz does not configure network policy.
+- Secrets: the repository needs no credentials. Do not place secrets in specifications or generated artifacts.
+- Telemetry: Zeuz contains no remote telemetry client. Runtime snapshots are local JSONL files.
+- Approvals: the repository describes approval gates but cannot enforce host permissions by itself.
+- Rollback: Zeuz does not undo generated writes. Use an isolated output directory and review the diff before accepting it.
+
+See [SECURITY.md](SECURITY.md) for the trust boundary and reporting guidance.
+
+## Project map
+
+| Path | Purpose |
+|---|---|
+| `workflows/zeuz-pipeline.js` | Executable workflow source for a compatible host |
+| `agents/` | Prompts for the controller and six specialist roles |
+| `rules/best-practices.md` | Repository-local construction policy passed to agents |
+| `specs/00-roadmap.md` | Phase map and role ownership |
+| `docs/decisions/` | Architecture decision records |
+| `smoke/smoke.sh` | Static syntax and invariant check |
+| `CLAUDE.md` | Project router for compatible coding-agent sessions |
+
+## Status and limits
+
+Zeuz is a reference implementation, not a packaged CLI or SDK. No public release schedule is committed.
+
+- The repository has no bundled workflow host adapter.
+- The smoke test does not execute a complete generated system.
+- Model labels such as `haiku`, `sonnet`, and `opus` must be understood or mapped by the host.
+- Agent verdicts remain model output. Treat generated code and claims as untrusted until independent checks pass.
+- `abtop` is optional; the Observe step records `abtop_unavailable` when it cannot run the binary.
+
+<!-- pantheon-family:start -->
+## Olympuz family
+
+This is one of the public [Olympuz projects](https://github.com/zarubinvibe/athena#olympuz-family). Each row opens the repository or downloads its source as a ZIP.
+
+| Type | Name | What it does | Source |
+|---|---|---|---|
+| project | Athena | Portable agent OS that restores a complete Claude and Codex setup on a new Mac. | [Repository](https://github.com/zarubinvibe/athena) · [ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) |
+| project | Helioz | 24/7 agent work conveyor with verified completion markers and goal-based overnight decisions. | [Repository](https://github.com/zarubinvibe/helioz) · [ZIP](https://github.com/zarubinvibe/helioz/archive/refs/heads/main.zip) |
+| project | Mnemazine | Local-first memory system that turns raw inputs into verified reusable knowledge. | [Repository](https://github.com/zarubinvibe/mnemazine) · [ZIP](https://github.com/zarubinvibe/mnemazine/archive/refs/heads/main.zip) |
+| project | Themis | Multi-agent assistant for Russian litigation with local OCR and review by a five-jurist council. | [Repository](https://github.com/zarubinvibe/themis) · [ZIP](https://github.com/zarubinvibe/themis/archive/refs/heads/main.zip) |
+| project | Zeuz | Factory that turns an idea into a governed multi-agent workflow with gates, observability, and replay. | [Repository](https://github.com/zarubinvibe/zeuz) · [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) |
+<!-- pantheon-family:end -->
+
+## Contributing
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md), keep changes scoped, and run:
+
+```bash
+bash smoke/smoke.sh
+git diff --check
+```
+
+## Attribution and license
+
+Zeuz was created by Philipp Zarubin. The original workflow structure, agent personas, and earlier repository artwork remain in the project history and tracked assets.
+
+Licensed under the [MIT License](LICENSE). Copyright (c) 2026 Philipp Zarubin.

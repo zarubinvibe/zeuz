@@ -11,7 +11,7 @@ zeuz (v1.1) — рабочая фабрика, но: (1) конституция 
 
 1. **Латинский ренейм**: `агенты/`→`agents/`, `конституция/`→`rules/`, `BEST-PRACTICES.md`→`best-practices.md`.
 2. **Схема Афины**: тонкий `CLAUDE.md` (Карта/Автозапуск/Команды/Конвенции/Не-делать), `specs/00-roadmap.md` (фазовый план, читать первым), `docs/decisions/` (ADR), `smoke/smoke.sh` (гейт), `README.md`+`README.ru.md`. Старые `CLAUDE_Зевс.md`/`Протокол_Зевс.md` свёрнуты в CLAUDE+specs.
-3. **Апгрейд конституции** — добавлены/заострены: §0 harness>модель · §4 рой-экономика (×15 токенов, ×4.4 vs ×17.2) · §5 контекст=бюджет (73%/49%/10% cache) · §9 синтез-на-записи + retrieval-стек · §10 keep-or-revert + generator≠evaluator + circuit breakers · боевые правила (10).
+3. **Апгрейд конституции** — добавлены/заострены: §0 harness>модель · §4 рой-экономика · §5 контекст=бюджет · §9 синтез-на-записи + retrieval-стек · §10 keep-or-revert + generator≠evaluator + circuit breakers · боевые правила. Числовые оценки без repository-local evidence в публичной версии не используются.
 
 ## Границы
 

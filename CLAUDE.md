@@ -25,7 +25,7 @@
 ## Команды
 - Гейт: `smoke/smoke.sh` (node --check pipeline + grep ворот/observability/душ)
 - Синтаксис workflow: `node --check` через обёртку `async function __wf(){…}` (export→const, top-level return легален)
-- Старт сессии: читать `rules/best-practices.md` → `specs/00-roadmap.md` → знать образцы (Мнемозина/Фемида)
+- Старт сессии: читать `rules/best-practices.md` → `specs/00-roadmap.md` → `docs/decisions/`
 
 ## Конвенции
 - `/caveman` всегда (общение) · `/humanizer` все рождаемые документы. Русский, без воды.

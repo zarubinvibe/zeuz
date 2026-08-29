@@ -33,49 +33,63 @@
         "title_en": "Write the specification",
         "title_ru": "Опишите задачу",
         "diagram_en": "Specify",
-        "diagram_ru": "Спека"
+        "diagram_ru": "Спека",
+        "title_zh": "先写清楚规格",
+        "diagram_zh": "规格"
       },
       {
         "id": "observe",
         "title_en": "Snapshot the local runtime",
         "title_ru": "Снимите состояние среды",
         "diagram_en": "Observe",
-        "diagram_ru": "Разведка"
+        "diagram_ru": "Разведка",
+        "title_zh": "给环境拍一张快照",
+        "diagram_zh": "观察"
       },
       {
         "id": "cast",
         "title_en": "Roles get their people",
         "title_ru": "Роли получают исполнителей",
         "diagram_en": "Cast",
-        "diagram_ru": "Роли"
+        "diagram_ru": "Роли",
+        "title_zh": "角色找到自己的人",
+        "diagram_zh": "选角"
       },
       {
         "id": "architect",
         "title_en": "Stages, gates, and a graph",
         "title_ru": "Этапы, ворота и граф",
         "diagram_en": "Architect",
-        "diagram_ru": "Архитектура"
+        "diagram_ru": "Архитектура",
+        "title_zh": "阶段、闸门和一张图",
+        "diagram_zh": "架构"
       },
       {
         "id": "economize",
         "title_en": "Choose models and cut context",
         "title_ru": "Выберите модели и срежьте контекст",
         "diagram_en": "Economize",
-        "diagram_ru": "Экономия"
+        "diagram_ru": "Экономия",
+        "title_zh": "挑模型，压上下文",
+        "diagram_zh": "省耗"
       },
       {
         "id": "build",
         "title_en": "Files are written out",
         "title_ru": "Файлы записываются",
         "diagram_en": "Build",
-        "diagram_ru": "Сборка"
+        "diagram_ru": "Сборка",
+        "title_zh": "文件被写出来",
+        "diagram_zh": "构建"
       },
       {
         "id": "test",
         "title_en": "A tester returns a verdict",
         "title_ru": "Тестировщик выдаёт вердикт",
         "diagram_en": "Test",
-        "diagram_ru": "Проверка"
+        "diagram_ru": "Проверка",
+        "title_zh": "测试者给出结论",
+        "diagram_zh": "检验"
       }
     ]
   },

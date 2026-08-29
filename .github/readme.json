@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "owner": "zarubinvibe",
+  "slug": "zeuz",
+  "license_badge": "MIT",
+  "status_badge": "reference",
+  "languages": [
+    "en",
+    "ru",
+    "zh"
+  ],
+  "quick_code": "git clone https://github.com/zarubinvibe/zeuz.git\ncd zeuz\nbash smoke/smoke.sh",
+  "text": {
+    "en": {
+      "title": "Zeuz",
+      "name": "Zeuz",
+      "tagline": "Zeuz turns a written specification into a multi-agent workflow with roles, gates, observability, and a verdict.",
+      "hero_alt": "Zeus in white marble with a golden lightning bolt beside the classical column, a governed workflow graph unfolding in daylight",
+      "what": "Zeuz is a factory for agent workflows. You give it a complete specification; a sequence of specialist agents designs the system, writes its files, and inspects the result. The output is a new project folder, not a running service.",
+      "why": "Writing a multi-agent system by hand means inventing roles, stages, gates, and logging from scratch every time, and forgetting one of them every time. Zeuz keeps that structure as a repeatable pipeline with a tester at the end.",
+      "advantage": "the generated system is required to protect irreversible actions with deterministic checks.",
+      "better": "The architect and builder prompts demand those checks, and the tester inspects them before returning a verdict. A run reports `done` only when the tester agrees.",
+      "how": "The pipeline runs as ordered phases inside a workflow host. Each phase has a role, an input, and an artifact you can read.",
+      "quick_intro": "You need Bash and Node.js. The smoke check runs without any model and proves the factory source is still intact.",
+      "quick_extra": "No Git? Download [the ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) or [the tarball](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) and run the same check inside. To build something real, register `workflows/zeuz-pipeline.js` with a workflow host that provides `args`, `phase()`, `agent()`, and `log()`, then set `ZEUZ_HOME` and `ZEUZ_PROJECTS`.",
+      "quick_result": "the check ends with a passing gate line, which proves the source parses and still carries its required markers.",
+      "compare": [
+        [
+          "**Zeuz**",
+          "You build multi-agent systems more than once",
+          "Roles, gates, observability, and a tester verdict by default",
+          "Needs a workflow host; no bundled runner"
+        ],
+        [
+          "Writing the workflow by hand",
+          "One small system",
+          "Exactly what you intended",
+          "Gates and logging get invented again every time"
+        ],
+        [
+          "An agent framework",
+          "You want libraries and a community",
+          "Batteries, docs, integrations",
+          "You still design the roles, gates, and evidence yourself"
+        ],
+        [
+          "One long agent prompt",
+          "A quick experiment",
+          "Nothing to set up",
+          "No stages, no gates, and no way to see what happened"
+        ]
+      ],
+      "glossary": [
+        [
+          "Workflow host",
+          "The program that runs the pipeline and gives agents their tools"
+        ],
+        [
+          "Gate",
+          "A check that must pass before an irreversible step is allowed"
+        ]
+      ],
+      "safety": [
+        "File access: build agents are instructed to write under your output directory; snapshots go under the project folder.",
+        "Shell access: the observe and test phases run local commands, and your host decides sandboxing and approvals.",
+        "Network access: the cast phase asks the host to verify facts online; Zeuz sets no network policy of its own.",
+        "Secrets: the repository needs no credentials, and none belong in a specification or a generated artifact.",
+        "Telemetry: there is no remote telemetry client; snapshots are local files.",
+        "Rollback: Zeuz does not undo generated writes, so use a separate output directory and review the diff."
+      ],
+      "safety_tail": "See [SECURITY.md](SECURITY.md) for the trust boundary and how to report a problem.",
+      "status": "Status: reference implementation. The repository holds the workflow source, agent prompts, rules, and a static smoke check.",
+      "limits": [
+        "There is no bundled workflow host adapter and no packaged CLI.",
+        "The smoke check inspects source and markers; it does not execute a complete generated system.",
+        "Model labels such as haiku, sonnet, and opus must be mapped by your host.",
+        "Agent verdicts are model output: treat generated code and claims as untrusted until your own checks pass.",
+        "The optional observability binary may be missing, and the run records that instead of failing quietly."
+      ],
+      "docs": "Deeper reading: [the full reference](docs/DETAILS.md), [the roadmap](specs/00-roadmap.md), [construction rules](rules/best-practices.md), and the [decision records](docs/decisions/).",
+      "license": "MIT. See [LICENSE](LICENSE). Zeuz was created by Philipp Zarubin."
+    },
+    "ru": {
+      "title": "Zeuz",
+      "name": "Zeuz",
+      "tagline": "Zeuz превращает written-спеку в многоагентный workflow с ролями, воротами, наблюдаемостью и вердиктом.",
+      "hero_alt": "Зевс из белого мрамора с золотой молнией у классической колонны, управляемый граф workflow разворачивается в дневном свете",
+      "what": "Zeuz это фабрика агентных workflow. Вы даёте полную спеку, а дальше цепочка специализированных агентов проектирует систему, пишет её файлы и проверяет результат. На выходе новая папка проекта, а не запущенный сервис.",
+      "why": "Писать многоагентную систему руками значит каждый раз заново придумывать роли, этапы, ворота и логи и каждый раз про что-то забывать. Zeuz держит эту структуру повторяемым конвейером, в конце которого стоит тестировщик.",
+      "advantage": "у сгенерированной системы необратимые действия обязаны быть закрыты детерминированными проверками.",
+      "better": "Промпты архитектора и сборщика требуют этих проверок, а тестировщик смотрит на них до вердикта. Прогон отвечает `done`, только если тестировщик согласен.",
+      "how": "Конвейер идёт упорядоченными фазами внутри workflow-хоста. У каждой фазы есть роль, вход и артефакт, который можно прочитать.",
+      "quick_intro": "Нужны Bash и Node.js. Проверка smoke идёт без единой модели и доказывает, что исходник фабрики цел.",
+      "quick_extra": "Нет Git? Скачайте [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) или [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) и запустите ту же проверку внутри. Чтобы собрать настоящую систему, зарегистрируйте `workflows/zeuz-pipeline.js` в workflow-хосте, который даёт `args`, `phase()`, `agent()` и `log()`, и задайте `ZEUZ_HOME` и `ZEUZ_PROJECTS`.",
+      "quick_result": "проверка заканчивается строкой пройденного гейта, а это значит, что исходник разбирается и все обязательные маркеры на месте.",
+      "compare": [
+        [
+          "**Zeuz**",
+          "Вы собираете многоагентные системы не один раз",
+          "Роли, ворота, наблюдаемость и вердикт тестировщика по умолчанию",
+          "Нужен workflow-хост, своего раннера нет"
+        ],
+        [
+          "Писать workflow руками",
+          "Одна небольшая система",
+          "Ровно то, что вы задумали",
+          "Ворота и логи придумываются заново каждый раз"
+        ],
+        [
+          "Агентный фреймворк",
+          "Нужны библиотеки и сообщество",
+          "Готовые куски, документация, интеграции",
+          "Роли, ворота и доказательства всё равно проектируете вы"
+        ],
+        [
+          "Один длинный промпт агенту",
+          "Быстрый эксперимент",
+          "Ничего не надо настраивать",
+          "Ни этапов, ни ворот, ни способа увидеть, что произошло"
+        ]
+      ],
+      "glossary": [
+        [
+          "Workflow host",
+          "Программа, которая исполняет конвейер и даёт агентам инструменты"
+        ],
+        [
+          "Gate",
+          "Проверка, без которой необратимый шаг не разрешается"
+        ]
+      ],
+      "safety": [
+        "Доступ к файлам: агентам сборки предписано писать в вашу выходную папку, снимки среды ложатся в папку проекта.",
+        "Shell: фазы разведки и проверки запускают локальные команды, а sandbox и подтверждения решает ваш хост.",
+        "Сеть: фаза подбора просит хост проверить факты в сети, собственной сетевой политики у Zeuz нет.",
+        "Секреты: репозиторию не нужны доступы, и им не место ни в спеке, ни в сгенерированных файлах.",
+        "Телеметрия: удалённого клиента нет, снимки это локальные файлы.",
+        "Откат: Zeuz не отменяет записанное, поэтому держите отдельную выходную папку и смотрите diff."
+      ],
+      "safety_tail": "Границы доверия и порядок сообщения о проблеме описаны в [SECURITY.md](SECURITY.md).",
+      "status": "Статус: эталонная реализация. В репозитории лежат исходник workflow, промпты агентов, правила и статическая проверка smoke.",
+      "limits": [
+        "Готового адаптера к workflow-хосту нет, упакованного CLI тоже.",
+        "Проверка smoke смотрит исходник и маркеры, а не исполняет собранную систему целиком.",
+        "Метки моделей haiku, sonnet и opus ваш хост должен сопоставить сам.",
+        "Вердикты агентов это вывод модели: считайте сгенерированный код и утверждения непроверенными, пока не пройдут ваши проверки.",
+        "Необязательный бинарь наблюдаемости может отсутствовать, и прогон это записывает, а не падает молча."
+      ],
+      "docs": "Глубже: [полный разбор](docs/DETAILS.ru.md), [дорожная карта](specs/00-roadmap.md), [правила сборки](rules/best-practices.md) и [записи решений](docs/decisions/).",
+      "license": "MIT. Текст в файле [LICENSE](LICENSE). Zeuz создал Филипп Зарубин."
+    },
+    "zh": {
+      "title": "Zeuz",
+      "name": "Zeuz",
+      "tagline": "Zeuz 把一份写清楚的规格变成带角色、闸门、可观测性和结论的多智能体工作流。",
+      "hero_alt": "白色大理石的宙斯手持金色闪电站在古典石柱旁，一张受管控的工作流图在日光里展开",
+      "what": "Zeuz 是一座智能体工作流的工厂。你给它一份完整的规格，一串专职智能体设计这套系统、写出文件并检查结果。产出是一个新的项目目录，而不是一个跑着的服务。",
+      "why": "手写多智能体系统，意味着每次都要重新想角色、阶段、闸门和日志，也意味着每次都会漏掉其中一样。Zeuz 把这套结构固定成可重复的流水线，末尾站着一个测试者。",
+      "advantage": "生成出来的系统必须用确定性的检查守住不可逆的动作。",
+      "better": "架构和构建阶段的提示词强制要求这些检查，测试者在给出结论之前会亲自看它们。只有测试者点头，这次运行才会报告完成。",
+      "how": "流水线在一个工作流宿主里按阶段运行。每个阶段都有角色、输入，以及一件你能读的产物。",
+      "quick_intro": "你需要 Bash 和 Node.js。冒烟检查不调用任何模型，它证明工厂的源码还是完整的。",
+      "quick_extra": "没有 Git？下载 [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) 或 [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz)，在里面跑同样的检查。要真正造一套系统，把 `workflows/zeuz-pipeline.js` 注册到提供 `args`、`phase()`、`agent()` 和 `log()` 的宿主里，并设置 `ZEUZ_HOME` 与 `ZEUZ_PROJECTS`。",
+      "quick_result": "检查以一行通过的闸门结束，说明源码能被解析，必需的标记也都还在。",
+      "compare": [
+        [
+          "**Zeuz**",
+          "你不止一次要造多智能体系统",
+          "默认就有角色、闸门、可观测性和测试者结论",
+          "需要一个工作流宿主，自身不带运行器"
+        ],
+        [
+          "手写工作流",
+          "只造一套小系统",
+          "完全按你的想法",
+          "闸门和日志每次都要重新发明"
+        ],
+        [
+          "智能体框架",
+          "你想要库和社区",
+          "现成组件、文档、集成",
+          "角色、闸门和证据仍然要你自己设计"
+        ],
+        [
+          "一段很长的提示词",
+          "快速试一下",
+          "什么都不用配置",
+          "没有阶段、没有闸门，也看不清发生了什么"
+        ]
+      ],
+      "glossary": [
+        [
+          "Workflow host",
+          "工作流宿主：执行流水线并给智能体提供工具的程序"
+        ],
+        [
+          "Gate",
+          "闸门：不通过就不允许执行不可逆步骤的检查"
+        ]
+      ],
+      "safety": [
+        "文件访问：构建智能体被要求写进你的输出目录，环境快照写在项目目录下。",
+        "Shell：观察和测试阶段会执行本地命令，沙箱与确认由你的宿主决定。",
+        "网络：角色阶段会请宿主在线核对事实，Zeuz 自己不设定网络策略。",
+        "密钥：仓库不需要任何凭据，规格和生成物里也不该出现凭据。",
+        "遥测：没有远程遥测客户端，快照都是本地文件。",
+        "回滚：Zeuz 不会撤销已经写下的内容，请用单独的输出目录并检查差异。"
+      ],
+      "safety_tail": "信任边界和问题上报方式写在 [SECURITY.md](SECURITY.md) 里。",
+      "status": "状态：参考实现。仓库里有工作流源码、智能体提示词、规则和一个静态冒烟检查。",
+      "limits": [
+        "没有现成的工作流宿主适配器，也没有打包好的命令行。",
+        "冒烟检查看的是源码和标记，不会完整执行生成出来的系统。",
+        "haiku、sonnet、opus 这类模型标签需要你的宿主自己映射。",
+        "智能体的结论仍然是模型输出：在你自己的检查通过之前，把生成的代码和说法都当作未经证实。",
+        "可选的可观测性程序可能不存在，这时运行会如实记录，而不是安静地失败。"
+      ],
+      "docs": "想看得更深：[完整参考](docs/DETAILS.md)、[路线图](specs/00-roadmap.md)、[构建规则](rules/best-practices.md) 和 [决策记录](docs/decisions/)。",
+      "license": "MIT。见 [LICENSE](LICENSE)。Zeuz 由 Philipp Zarubin 创建。"
+    }
+  },
+  "stages": {
+    "specify": {
+      "en": {
+        "short": "Goal, input, completeness invariant, constraints, done-when",
+        "body": "You state the goal, the input, what must never be skipped, the constraints, and how you will know it is done. A missing or very short specification is rejected.",
+        "result": "a specification the factory can build against instead of guessing.",
+        "alt": "Zeuz workflow stage 1: Write the specification, drawn as a wide Pantheon marble scene"
+      },
+      "ru": {
+        "short": "Цель, вход, инвариант полноты, ограничения, критерий готовности",
+        "body": "Вы описываете цель, вход, то, что нельзя пропускать, ограничения и признак готовности. Пустая или очень короткая спека отклоняется.",
+        "result": "спека, по которой фабрика строит, а не догадывается.",
+        "alt": "Этап 1 такта Zeuz: Опишите задачу, показан широкой мраморной сценой Pantheon"
+      },
+      "zh": {
+        "short": "目标、输入、完整性不变量、约束、完成标准",
+        "body": "你写下目标、输入、绝对不能跳过的东西、约束，以及怎样才算做完。规格缺失或者太短会被拒绝。",
+        "result": "一份工厂可以照着造的规格，而不是靠猜。",
+        "alt": "Pantheon 宽幅大理石场景：Zeuz 工作流程第 1 步，先写清楚规格"
+      }
+    },
+    "observe": {
+      "en": {
+        "short": "What is actually available on this machine, written to a log",
+        "body": "The first phase records a runtime snapshot in a local JSONL file. When an optional tool is missing, the run records that fact instead of pretending.",
+        "result": "a written starting point you can look at afterwards.",
+        "alt": "Zeuz workflow stage 2: Snapshot the local runtime, drawn as a wide Pantheon marble scene"
+      },
+      "ru": {
+        "short": "Что реально доступно на этой машине, записано в лог",
+        "body": "Первая фаза пишет снимок среды в локальный JSONL. Если необязательного инструмента нет, прогон это записывает, а не делает вид.",
+        "result": "записанная точка отсчёта, на которую можно посмотреть потом.",
+        "alt": "Этап 2 такта Zeuz: Снимите состояние среды, показан широкой мраморной сценой Pantheon"
+      },
+      "zh": {
+        "short": "这台机器上真正可用的东西，写进日志",
+        "body": "第一个阶段把运行环境的快照写进本地 JSONL 文件。可选工具不存在时，这次运行会记录这个事实，而不是假装有。",
+        "result": "一个写下来的起点，事后还能回头看。",
+        "alt": "Pantheon 宽幅大理石场景：Zeuz 工作流程第 2 步，给环境拍一张快照"
+      }
+    },
+    "cast": {
+      "en": {
+        "short": "Role definitions and verified personas",
+        "body": "The cast phase writes role definitions for the future system and the personas behind them. Biographical facts are meant to be checked, not invented.",
+        "result": "a named team instead of one anonymous prompt.",
+        "alt": "Zeuz workflow stage 3: Roles get their people, drawn as a wide Pantheon marble scene"
+      },
+      "ru": {
+        "short": "Описания ролей и проверенные персоны",
+        "body": "Фаза подбора пишет описания ролей будущей системы и персоны за ними. Биографические факты положено проверять, а не выдумывать.",
+        "result": "названная команда вместо одного безымянного промпта.",
+        "alt": "Этап 3 такта Zeuz: Роли получают исполнителей, показан широкой мраморной сценой Pantheon"
+      },
+      "zh": {
+        "short": "角色定义和经过核对的人物设定",
+        "body": "选角阶段为将来的系统写下角色定义和背后的人物设定。传记性的事实应当被核对，而不是编出来。",
+        "result": "一支有名有姓的队伍，而不是一段匿名提示词。",
+        "alt": "Pantheon 宽幅大理石场景：Zeuz 工作流程第 3 步，角色找到自己的人"
+      }
+    },
+    "architect": {
+      "en": {
+        "short": "Parallel boundaries and deterministic gate requirements",
+        "body": "The architect lays out the stages, marks what can run in parallel, and states which gates must be deterministic. The result is a graph, not prose.",
+        "result": "a plan where irreversible steps are fenced before any code exists.",
+        "alt": "Zeuz workflow stage 4: Stages, gates, and a graph, drawn as a wide Pantheon marble scene"
+      },
+      "ru": {
+        "short": "Границы параллельности и требования к детерминированным воротам",
+        "body": "Архитектор раскладывает этапы, отмечает, что можно гнать параллельно, и называет ворота, которые обязаны быть детерминированными. Результат это граф, а не проза.",
+        "result": "план, где необратимые шаги огорожены ещё до появления кода.",
+        "alt": "Этап 4 такта Zeuz: Этапы, ворота и граф, показан широкой мраморной сценой Pantheon"
+      },
+      "zh": {
+        "short": "并行边界和确定性闸门的要求",
+        "body": "架构阶段排出阶段顺序，标出哪些可以并行，并指明哪些闸门必须是确定性的。结果是一张图，不是一段散文。",
+        "result": "一份在代码出现之前就把不可逆步骤围起来的计划。",
+        "alt": "Pantheon 宽幅大理石场景：Zeuz 工作流程第 4 步，阶段、闸门和一张图"
+      }
+    },
+    "economize": {
+      "en": {
+        "short": "A model map and context-saving measures per stage",
+        "body": "Each stage gets a model class and measures that keep context small. Cheap mechanical work does not get an expensive model by default.",
+        "result": "a system that is affordable to run more than once.",
+        "alt": "Zeuz workflow stage 5: Choose models and cut context, drawn as a wide Pantheon marble scene"
+      },
+      "ru": {
+        "short": "Карта моделей и меры экономии контекста по этапам",
+        "body": "Каждый этап получает класс модели и меры, которые держат контекст маленьким. Дешёвая механика не получает дорогую модель по умолчанию.",
+        "result": "система, которую не разорительно запускать больше одного раза.",
+        "alt": "Этап 5 такта Zeuz: Выберите модели и срежьте контекст, показан широкой мраморной сценой Pantheon"
+      },
+      "zh": {
+        "short": "每个阶段的模型分配和省上下文的做法",
+        "body": "每个阶段拿到一个模型档位和把上下文压小的做法。便宜的机械活默认不会用上昂贵的模型。",
+        "result": "一套跑不止一次也不心疼的系统。",
+        "alt": "Pantheon 宽幅大理石场景：Zeuz 工作流程第 5 步，挑模型，压上下文"
+      }
+    },
+    "build": {
+      "en": {
+        "short": "Agent files, a workflow, a protocol, a router, a plan graph",
+        "body": "The builder writes the generated project into your output directory: agent files, the workflow source, a protocol, a project router, and a plan graph.",
+        "result": "a project folder you can read, diff, and run separately.",
+        "alt": "Zeuz workflow stage 6: Files are written out, drawn as a wide Pantheon marble scene"
+      },
+      "ru": {
+        "short": "Файлы агентов, workflow, протокол, роутер, граф плана",
+        "body": "Сборщик пишет сгенерированный проект в вашу выходную папку: файлы агентов, исходник workflow, протокол, роутер проекта и граф плана.",
+        "result": "папка проекта, которую можно прочитать, сравнить и запускать отдельно.",
+        "alt": "Этап 6 такта Zeuz: Файлы записываются, показан широкой мраморной сценой Pantheon"
+      },
+      "zh": {
+        "short": "智能体文件、工作流、协议、路由和计划图",
+        "body": "构建阶段把生成的项目写进你的输出目录：智能体文件、工作流源码、协议、项目路由和计划图。",
+        "result": "一个可以阅读、比对差异、单独运行的项目目录。",
+        "alt": "Pantheon 宽幅大理石场景：Zeuz 工作流程第 6 步，文件被写出来"
+      }
+    },
+    "test": {
+      "en": {
+        "short": "Syntax, gates, observability, lineage, personas, dry run",
+        "body": "The tester inspects the generated system across those dimensions and reports findings. Anything other than a passing verdict returns `needs_fix` with the issues attached.",
+        "result": "an honest status instead of a confident-sounding summary.",
+        "alt": "Zeuz workflow stage 7: A tester returns a verdict, drawn as a wide Pantheon marble scene"
+      },
+      "ru": {
+        "short": "Синтаксис, ворота, наблюдаемость, происхождение, персоны, сухой прогон",
+        "body": "Тестировщик осматривает собранную систему по этим направлениям и сообщает находки. Любой вердикт, кроме прохождения, возвращает `needs_fix` вместе со списком проблем.",
+        "result": "честный статус вместо уверенно звучащей сводки.",
+        "alt": "Этап 7 такта Zeuz: Тестировщик выдаёт вердикт, показан широкой мраморной сценой Pantheon"
+      },
+      "zh": {
+        "short": "语法、闸门、可观测性、来源、人物设定、干跑",
+        "body": "测试者按这些方向检查生成出来的系统并报告发现。只要不是通过，运行就返回需要修复，并附上问题清单。",
+        "result": "一个诚实的状态，而不是一段听起来很有底气的总结。",
+        "alt": "Pantheon 宽幅大理石场景：Zeuz 工作流程第 7 步，测试者给出结论"
+      }
+    }
+  }
+}

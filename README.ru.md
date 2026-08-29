@@ -2,7 +2,7 @@
 
 Zeuz превращает written-спеку в многоагентный workflow с ролями, воротами, наблюдаемостью и вердиктом.
 
-[English](README.md)
+[English](README.md) · [中文](README.zh.md)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Stars](https://img.shields.io/github/stars/zarubinvibe/zeuz?style=flat&color=C9A87A)](https://github.com/zarubinvibe/zeuz/stargazers) [![Status](https://img.shields.io/badge/status-reference-brightgreen.svg)](https://github.com/zarubinvibe/zeuz) [![Olympuz](https://img.shields.io/badge/olympuz-family-B8D6EA.svg)](https://github.com/zarubinvibe/athena#olympuz-family)
 

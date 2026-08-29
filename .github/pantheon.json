@@ -13,13 +13,15 @@
     "presentation": {
       "min_width": 1600,
       "aspect_ratio": "16:9",
-      "readme_width": "100%"
+      "readme_width": "100%",
+      "published_width": 1664,
+      "published_height": 936
     },
     "hero": {
-      "source_path": "docs/assets/pantheon/hero.png",
+      "source_path": "docs/assets/pantheon/hero-source.png",
       "source_sha256": "b403eea6060c1dab5d764d47f9967bbeb11c75afab4bf7272be2328ccfa24997",
       "published_path": "docs/assets/pantheon/hero.png",
-      "published_sha256": "b403eea6060c1dab5d764d47f9967bbeb11c75afab4bf7272be2328ccfa24997"
+      "published_sha256": "0b6c829eb4ee25f3af3ed5fcb18a1790a53f99bbbaaae3694188ce1742f69fe4"
     },
     "emblem": {
       "source_path": "docs/assets/pantheon/emblem.png",

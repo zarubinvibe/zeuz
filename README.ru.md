@@ -8,6 +8,16 @@ Zeuz превращает written-спеку в многоагентный workf
 
 <p align="center"><img src="docs/assets/pantheon/hero.png" alt="Зевс из белого мрамора с золотой молнией у классической колонны, управляемый граф workflow разворачивается в дневном свете" width="100%"></p>
 
+<!-- owner-welcome:start -->
+
+> Привет. Каждый раз, когда мне была нужна новая система из агентов, я заново придумывал одно и то же: роли, этапы, ворота, логи. Что-то обязательно забывалось, чаще всего ворота.
+>
+> Zeuz держит эту структуру, чтобы я не собирал её заново. Это фабрика, а не сервис: даёшь спеку, получаешь папку проекта и честный вердикт тестировщика.
+>
+> — Филипп Зарубин
+
+<!-- owner-welcome:end -->
+
 ## Оглавление
 
 - [Что это](#что-это)
@@ -121,7 +131,9 @@ cd zeuz
 bash smoke/smoke.sh
 ```
 
-Нет Git? Скачайте [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) или [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) и запустите ту же проверку внутри. Чтобы собрать настоящую систему, зарегистрируйте `workflows/zeuz-pipeline.js` в workflow-хосте, который даёт `args`, `phase()`, `agent()` и `log()`, и задайте `ZEUZ_HOME` и `ZEUZ_PROJECTS`.
+Нет Git? Скачайте [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) или [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) и запустите ту же проверку внутри. Чтобы собрать настоящую систему, зарегистрируйте `workflows/zeuz-pipeline.js` в workflow-хосте, который даёт `args`, `phase()`, `agent()` и `log()`, и задайте `ZEUZ_HOME` и `ZEUZ_PROJECTS`. Первый раз? Откройте проект в Claude Code и запустите `/zeuz-setup`: установка пройдёт разговором, по одному вопросу, и ничего не произойдёт без вашего «да».
+
+Делаете это впервые? [Онбординг](docs/ONBOARDING.ru.md) проводит весь первый запуск по шагам и говорит, что видно после каждой команды.
 
 **Что получится:** проверка заканчивается строкой пройденного гейта, а это значит, что исходник разбирается и все обязательные маркеры на месте.
 

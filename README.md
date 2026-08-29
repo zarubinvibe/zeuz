@@ -8,6 +8,16 @@ Zeuz turns a written specification into a multi-agent workflow with roles, gates
 
 <p align="center"><img src="docs/assets/pantheon/hero.png" alt="Zeus in white marble with a golden lightning bolt beside the classical column, a governed workflow graph unfolding in daylight" width="100%"></p>
 
+<!-- owner-welcome:start -->
+
+> Hello. Every time I needed a new system out of agents, I invented the same things again: roles, stages, gates, logging. Something was always forgotten, usually the gates.
+>
+> Zeuz keeps that structure so I stop rebuilding it. It is a factory, not a service: you give it a specification, it hands you a project folder and a tester's honest verdict.
+>
+> — Filipp Zarubin
+
+<!-- owner-welcome:end -->
+
 ## Contents
 
 - [What This Is](#what-this-is)
@@ -121,7 +131,9 @@ cd zeuz
 bash smoke/smoke.sh
 ```
 
-No Git? Download [the ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) or [the tarball](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) and run the same check inside. To build something real, register `workflows/zeuz-pipeline.js` with a workflow host that provides `args`, `phase()`, `agent()`, and `log()`, then set `ZEUZ_HOME` and `ZEUZ_PROJECTS`.
+No Git? Download [the ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) or [the tarball](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) and run the same check inside. To build something real, register `workflows/zeuz-pipeline.js` with a workflow host that provides `args`, `phase()`, `agent()`, and `log()`, then set `ZEUZ_HOME` and `ZEUZ_PROJECTS`. First time here? Open the project in Claude Code and run `/zeuz-setup`: the install goes as a conversation, one question at a time, and nothing happens without your yes.
+
+Never done this before? [The onboarding](docs/ONBOARDING.md) walks the whole first run step by step and says what you see after every command.
 
 **You get:** the check ends with a passing gate line, which proves the source parses and still carries its required markers.
 
@@ -195,4 +207,4 @@ This is one of the public [Olympuz projects](https://github.com/zarubinvibe/athe
 
 ## License
 
-MIT. See [LICENSE](LICENSE). Zeuz was created by Philipp Zarubin.
+MIT. See [LICENSE](LICENSE). Zeuz was created by Filipp Zarubin.

@@ -22,7 +22,7 @@
       "better": "The architect and builder prompts demand those checks, and the tester inspects them before returning a verdict. A run reports `done` only when the tester agrees.",
       "how": "The pipeline runs as ordered phases inside a workflow host. Each phase has a role, an input, and an artifact you can read.",
       "quick_intro": "You need Bash and Node.js. The smoke check runs without any model and proves the factory source is still intact.",
-      "quick_extra": "No Git? Download [the ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) or [the tarball](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) and run the same check inside. To build something real, register `workflows/zeuz-pipeline.js` with a workflow host that provides `args`, `phase()`, `agent()`, and `log()`, then set `ZEUZ_HOME` and `ZEUZ_PROJECTS`.",
+      "quick_extra": "No Git? Download [the ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) or [the tarball](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) and run the same check inside. To build something real, register `workflows/zeuz-pipeline.js` with a workflow host that provides `args`, `phase()`, `agent()`, and `log()`, then set `ZEUZ_HOME` and `ZEUZ_PROJECTS`. First time here? Open the project in Claude Code and run `/zeuz-setup`: the install goes as a conversation, one question at a time, and nothing happens without your yes.",
       "quick_result": "the check ends with a passing gate line, which proves the source parses and still carries its required markers.",
       "compare": [
         [
@@ -78,7 +78,8 @@
         "The optional observability binary may be missing, and the run records that instead of failing quietly."
       ],
       "docs": "Deeper reading: [the full reference](docs/DETAILS.md), [the roadmap](specs/00-roadmap.md), [construction rules](rules/best-practices.md), and the [decision records](docs/decisions/).",
-      "license": "MIT. See [LICENSE](LICENSE). Zeuz was created by Philipp Zarubin."
+      "license": "MIT. See [LICENSE](LICENSE). Zeuz was created by Filipp Zarubin.",
+      "welcome": "Hello. Every time I needed a new system out of agents, I invented the same things again: roles, stages, gates, logging. Something was always forgotten, usually the gates.\n\nZeuz keeps that structure so I stop rebuilding it. It is a factory, not a service: you give it a specification, it hands you a project folder and a tester's honest verdict."
     },
     "ru": {
       "title": "Zeuz",
@@ -91,7 +92,7 @@
       "better": "Промпты архитектора и сборщика требуют этих проверок, а тестировщик смотрит на них до вердикта. Прогон отвечает `done`, только если тестировщик согласен.",
       "how": "Конвейер идёт упорядоченными фазами внутри workflow-хоста. У каждой фазы есть роль, вход и артефакт, который можно прочитать.",
       "quick_intro": "Нужны Bash и Node.js. Проверка smoke идёт без единой модели и доказывает, что исходник фабрики цел.",
-      "quick_extra": "Нет Git? Скачайте [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) или [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) и запустите ту же проверку внутри. Чтобы собрать настоящую систему, зарегистрируйте `workflows/zeuz-pipeline.js` в workflow-хосте, который даёт `args`, `phase()`, `agent()` и `log()`, и задайте `ZEUZ_HOME` и `ZEUZ_PROJECTS`.",
+      "quick_extra": "Нет Git? Скачайте [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) или [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) и запустите ту же проверку внутри. Чтобы собрать настоящую систему, зарегистрируйте `workflows/zeuz-pipeline.js` в workflow-хосте, который даёт `args`, `phase()`, `agent()` и `log()`, и задайте `ZEUZ_HOME` и `ZEUZ_PROJECTS`. Первый раз? Откройте проект в Claude Code и запустите `/zeuz-setup`: установка пройдёт разговором, по одному вопросу, и ничего не произойдёт без вашего «да».",
       "quick_result": "проверка заканчивается строкой пройденного гейта, а это значит, что исходник разбирается и все обязательные маркеры на месте.",
       "compare": [
         [
@@ -147,7 +148,8 @@
         "Необязательный бинарь наблюдаемости может отсутствовать, и прогон это записывает, а не падает молча."
       ],
       "docs": "Глубже: [полный разбор](docs/DETAILS.ru.md), [дорожная карта](specs/00-roadmap.md), [правила сборки](rules/best-practices.md) и [записи решений](docs/decisions/).",
-      "license": "MIT. Текст в файле [LICENSE](LICENSE). Zeuz создал Филипп Зарубин."
+      "license": "MIT. Текст в файле [LICENSE](LICENSE). Zeuz создал Филипп Зарубин.",
+      "welcome": "Привет. Каждый раз, когда мне была нужна новая система из агентов, я заново придумывал одно и то же: роли, этапы, ворота, логи. Что-то обязательно забывалось, чаще всего ворота.\n\nZeuz держит эту структуру, чтобы я не собирал её заново. Это фабрика, а не сервис: даёшь спеку, получаешь папку проекта и честный вердикт тестировщика."
     },
     "zh": {
       "title": "Zeuz",
@@ -160,7 +162,7 @@
       "better": "架构和构建阶段的提示词强制要求这些检查，测试者在给出结论之前会亲自看它们。只有测试者点头，这次运行才会报告完成。",
       "how": "流水线在一个工作流宿主里按阶段运行。每个阶段都有角色、输入，以及一件你能读的产物。",
       "quick_intro": "你需要 Bash 和 Node.js。冒烟检查不调用任何模型，它证明工厂的源码还是完整的。",
-      "quick_extra": "没有 Git？下载 [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) 或 [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz)，在里面跑同样的检查。要真正造一套系统，先把 `workflows/zeuz-pipeline.js` 注册到工作流宿主里。宿主需要提供 `args`、`phase()`、`agent()` 和 `log()`。然后设置 `ZEUZ_HOME` 与 `ZEUZ_PROJECTS`。",
+      "quick_extra": "没有 Git？下载 [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) 或 [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz)，在里面跑同样的检查。要真正造一套系统，先把 `workflows/zeuz-pipeline.js` 注册到工作流宿主里。宿主需要提供 `args`、`phase()`、`agent()` 和 `log()`。然后设置 `ZEUZ_HOME` 与 `ZEUZ_PROJECTS`。 第一次用？在 Claude Code 里打开项目并运行 `/zeuz-setup`：安装以对话方式进行，一次问一个问题，没有你的同意不会发生任何事。",
       "quick_result": "检查以一行通过的闸门结束，说明源码能被解析，必需的标记也都还在。",
       "compare": [
         [
@@ -216,7 +218,8 @@
         "可选的可观测性程序可能不存在，这时运行会如实记录，而不是安静地失败。"
       ],
       "docs": "想看得更深：[完整参考](docs/DETAILS.md)、[路线图](specs/00-roadmap.md)、[构建规则](rules/best-practices.md) 和 [决策记录](docs/decisions/)。",
-      "license": "MIT。见 [LICENSE](LICENSE)。Zeuz 由 Philipp Zarubin 创建。"
+      "license": "MIT。见 [LICENSE](LICENSE)。Zeuz 由 Filipp Zarubin 创建。",
+      "welcome": "你好。每次我需要一套新的智能体系统，都要把同样的东西重新想一遍：角色、阶段、闸门、日志。总有一样被忘掉，通常是闸门。\n\nZeuz 把这套结构固定下来，这样我就不用一再重建。它是工厂，不是服务：你给规格，它给你一个项目目录和测试者诚实的结论。"
     }
   },
   "stages": {
@@ -360,5 +363,10 @@
         "alt": "Pantheon 宽幅大理石场景：Zeuz 工作流程第 7 步，测试者给出结论"
       }
     }
+  },
+  "owner_display_name": {
+    "en": "Filipp Zarubin",
+    "ru": "Филипп Зарубин",
+    "zh": "Filipp Zarubin"
   }
 }

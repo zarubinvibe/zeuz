@@ -138,6 +138,6 @@ git diff --check
 
 ## Авторство и лицензия
 
-Zeuz создал Philipp Zarubin. Исходная структура workflow, персоны агентов и ранние иллюстрации остаются в истории Git и каталоге `docs/assets/`.
+Zeuz создал Filipp Zarubin. Исходная структура workflow, персоны агентов и ранние иллюстрации остаются в истории Git и каталоге `docs/assets/`.
 
-Код распространяется по [MIT License](../LICENSE). Copyright (c) 2026 Philipp Zarubin.
+Код распространяется по [MIT License](../LICENSE). Copyright (c) 2026 Filipp Zarubin.

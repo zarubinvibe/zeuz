@@ -138,6 +138,6 @@ git diff --check
 
 ## Attribution and license
 
-Zeuz was created by Philipp Zarubin. The original workflow structure, agent personas, and earlier repository artwork remain in the project history and tracked assets.
+Zeuz was created by Filipp Zarubin. The original workflow structure, agent personas, and earlier repository artwork remain in the project history and tracked assets.
 
-Licensed under the [MIT License](../LICENSE). Copyright (c) 2026 Philipp Zarubin.
+Licensed under the [MIT License](../LICENSE). Copyright (c) 2026 Filipp Zarubin.

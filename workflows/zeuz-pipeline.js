@@ -1,6 +1,6 @@
 export const meta = {
   name: 'zeuz-pipeline',
-  description: 'Фабрика Зевс: из спеки (собранной grill-me) рождает агентную workflow-систему класса Фемида/Мнемозина. Цепь мастеров: Марков (кастинг душ) → Шухов (архитектура+ворота) → Котельников (токеносбережение+модели) → Лебедев (пишет файлы) → Зворыкин (испытание). args = спека от grill-me.',
+  description: 'Фабрика Зевс: из спеки (собранной grill-me) рождает агентную workflow-систему класса Фемида/Мнемозина. Рой мастеров: Марков (кастинг душ) → Шухов (архитектура+ворота) → Котельников (токеносбережение+модели) → Лебедев (пишет файлы). Возврат status=built_needs_verify; гейт Зворыкина прогоняет ГЛАВНЫЙ ПОТОК скриптом verify_cmd (не фоновый агент — не виснет). args = спека от grill-me.',
   whenToUse: 'Вызывается Зевсом ПОСЛЕ /grill-me (Стадия 0 собрала спеку). Workflow({ name: "zeuz-pipeline", args: <спека> }).',
   phases: [
     { title: 'Observe', detail: 'abtop runtime snapshot + CTX gate' },
@@ -8,7 +8,7 @@ export const meta = {
     { title: 'Architect', detail: 'Шухов: стадии, рой, ворота полноты' },
     { title: 'Economize', detail: 'Котельников: токеносбережение + модель по функции' },
     { title: 'Build', detail: 'Лебедев: пишет агенты/*.md, workflow.js, Протокол, CLAUDE' },
-    { title: 'Test', detail: 'Зворыкин: синтаксис, ворота, души, dry-run, зеркало' },
+    { title: 'Verify', detail: 'Зворыкин В ГЛАВНОМ ПОТОКЕ: verify_cmd скрипт (не фоновый агент — не виснет на MCP)' },
   ],
 }
 
@@ -19,7 +19,7 @@ const HOME = (typeof process !== 'undefined' && process.env && process.env.HOME)
 const ZEUZ_HOME = (typeof process !== 'undefined' && process.env && process.env.ZEUZ_HOME) || (HOME + '/Проекты/zeuz')
 const PROJECTS = (typeof process !== 'undefined' && process.env && process.env.ZEUZ_PROJECTS) || (HOME + '/Проекты')
 const CONST = ZEUZ_HOME + '/rules/best-practices.md'
-const SAMPLES = 'Опирайся только на правила и спецификации из текущего репозитория; не предполагай доступ к внешним частным образцам.'
+const SAMPLES = 'Образцы: ~/Полезные знания/99 Система/Протокол_Мнемозина.md · ~/Desktop/Протокол_Фемида.md'
 const ABTOP = HOME + '/.cargo/bin/abtop'
 // new Date()/Date.now() запрещены в workflow-скриптах (ломают resume). RUN_ID — дет. хэш спеки: уникален per-бренд, стабилен для resume.
 const __hash = (s) => { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(36) }
@@ -131,39 +131,26 @@ const build = await agent(
       system_dir: { type: 'string' }, files_written: { type: 'array', items: { type: 'string' } } } }
 })
 
-// ---------- 5. Зворыкин — испытание ----------
-phase('Test')
-const test = await agent(
-  'Ты — ЗВОРЫКИН, Испытатель фабрики Зевс. Проверь рождённую систему в ' + (build.system_dir || targetDir) + ' ДО сдачи. Наземная правда — выхлоп/диск, не сводка.\n' +
-  '1. Синтаксис workflow: node --check с обёрткой `async function __wf(){…}` (sed export→const, top-level return легален).\n' +
-  '2. Ворота: grep маркеров `## … ✓` + детерминированной сверки в коде.\n' +
-  '3. Observability: grep `abtop --once`, `CTX`, `_observability.jsonl`, `run_id`.\n' +
-  '4. DAG/lineage: grep `plan.dag.json`, `generated_by`/`run_id` или ledger metadata.\n' +
-  '5. Души: grep персон в каждом агенте; запреты (Не делаешь) на месте.\n' +
-  '6. Dry-run логики ворот на мок-данных (node --input-type=module): пропущенный→форс? непокрытое НЕ архивится? леджер sum==census?\n' +
-  '7. Вердикт.\n' +
-  'Верни JSON: { "verdict":"ГОТОВА|ПРАВКИ|СТОП", "checks":[{"name","ok":bool,"note"}], "issues":[строки] }',
-  { label: 'test', phase: 'Test', agentType: 'general-purpose', model: 'sonnet', schema: {
-    type: 'object', required: ['verdict'], properties: {
-      verdict: { type: 'string' },
-      checks: { type: 'array', items: { type: 'object', properties: { name: { type: 'string' }, ok: { type: 'boolean' }, note: { type: 'string' } } } },
-      issues: { type: 'array', items: { type: 'string' } } } }
-})
+// ---------- 5. Зворыкин — испытание В ГЛАВНОМ ПОТОКЕ (не в рое) ----------
+// Урок apollon-v2 (2026-06-23): фоновый агент-испытатель виснет на MCP/транскрипт-операциях
+// (node --check + рой grep + dry-run → no-progress 180с×6 → workflow failed). Та же болезнь,
+// что дефект #1 у детей: интерактив/тяжёлая проверка в фоне зависает. Лечение — ИНВЕРСИЯ:
+// рой строит, дет-гейт Зворыкина прогоняет ГЛАВНЫЙ ПОТОК скриптом (дёшево, не виснет, не резюмится).
+const sysDir = build.system_dir || targetDir
 await observeRun('end')
 
 return {
-  status: test.verdict === 'ГОТОВА' ? 'done' : 'needs_fix',
+  status: 'built_needs_verify',
   run_id: RUN_ID,
   system_name: sysName,
-  system_dir: build.system_dir || targetDir,
+  system_dir: sysDir,
   roles: cast.roles,
   gates: arch.gates,
   files: build.files_written,
-  verdict: test.verdict,
   observability_log: OBS_LOG,
   plan_dag: targetDir + '/runs/' + RUN_ID + '-plan.dag.json',
-  issues: test.issues || [],
-  next: test.verdict === 'ГОТОВА'
-    ? 'Зевс: Graphify (если рождает знание) + зеркало Codex+VPS + сдача пользователю.'
-    : 'Вернуть Лебедеву с issues, перестроить, пере-испытать.'
+  verify_cmd: ZEUZ_HOME + '/smoke/verify-born-system.sh "' + sysDir + '"',
+  next: 'Зевс (ГЛАВНЫЙ ПОТОК) обязан прогнать гейт Зворыкина: запусти verify_cmd (дет-проверка синтаксис/new Date/ворота/observability/DAG/души). ' +
+    'Скрипт виснуть не может (не фоновый агент). ГОТОВА ✓ (exit 0) → Graphify (если рождает знание) + зеркало Codex+VPS + сдача. ' +
+    'ПРАВКИ ❌ (exit 1) → вернуть Лебедеву с дырами, перестроить, пере-верифицировать.'
 }

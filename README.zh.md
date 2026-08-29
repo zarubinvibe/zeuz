@@ -8,6 +8,16 @@ Zeuz 把一份写清楚的规格变成带角色、闸门、可观测性和结论
 
 <p align="center"><img src="docs/assets/pantheon/hero.png" alt="白色大理石的宙斯手持金色闪电站在古典石柱旁，一张受管控的工作流图在日光里展开" width="100%"></p>
 
+<!-- owner-welcome:start -->
+
+> 你好。每次我需要一套新的智能体系统，都要把同样的东西重新想一遍：角色、阶段、闸门、日志。总有一样被忘掉，通常是闸门。
+>
+> Zeuz 把这套结构固定下来，这样我就不用一再重建。它是工厂，不是服务：你给规格，它给你一个项目目录和测试者诚实的结论。
+>
+> — Filipp Zarubin
+
+<!-- owner-welcome:end -->
+
 ## 目录
 
 - [这是什么](#这是什么)
@@ -121,7 +131,9 @@ cd zeuz
 bash smoke/smoke.sh
 ```
 
-没有 Git？下载 [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) 或 [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz)，在里面跑同样的检查。要真正造一套系统，先把 `workflows/zeuz-pipeline.js` 注册到工作流宿主里。宿主需要提供 `args`、`phase()`、`agent()` 和 `log()`。然后设置 `ZEUZ_HOME` 与 `ZEUZ_PROJECTS`。
+没有 Git？下载 [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) 或 [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz)，在里面跑同样的检查。要真正造一套系统，先把 `workflows/zeuz-pipeline.js` 注册到工作流宿主里。宿主需要提供 `args`、`phase()`、`agent()` 和 `log()`。然后设置 `ZEUZ_HOME` 与 `ZEUZ_PROJECTS`。 第一次用？在 Claude Code 里打开项目并运行 `/zeuz-setup`：安装以对话方式进行，一次问一个问题，没有你的同意不会发生任何事。
+
+第一次做这件事？[上手引导](docs/ONBOARDING.zh.md) 会一步一步带你走完第一次运行，并写清楚每条命令之后你会看到什么。
 
 **你会得到：** 检查以一行通过的闸门结束，说明源码能被解析，必需的标记也都还在。
 
@@ -195,4 +207,4 @@ bash smoke/smoke.sh
 
 ## 许可证
 
-MIT。见 [LICENSE](LICENSE)。Zeuz 由 Philipp Zarubin 创建。
+MIT。见 [LICENSE](LICENSE)。Zeuz 由 Filipp Zarubin 创建。

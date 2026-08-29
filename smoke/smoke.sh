@@ -9,7 +9,7 @@ fail=0
 
 note() { printf '%s %s\n' "$1" "$2"; }
 
-# 1. Синтаксис workflow (export→const + обёртка, top-level return легален).
+# 1. Синтаксис workflow (export→const + обертка, top-level return легален).
 tmp="$(mktemp /tmp/zeuz-wf.XXXXXX.mjs)"
 { echo 'async function __wf(){'; sed 's/^export const /const /' "$WF"; echo '}'; } > "$tmp"
 if node --check "$tmp" 2>/tmp/zeuz-node.err; then

@@ -87,7 +87,7 @@
       {
         "id": "test",
         "title_en": "A tester returns a verdict",
-        "title_ru": "Тестировщик выдаёт вердикт",
+        "title_ru": "Тестировщик выдает вердикт",
         "diagram_en": "Test",
         "diagram_ru": "Проверка",
         "title_zh": "测试者给出结论",

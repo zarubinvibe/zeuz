@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Гейт Зворыкина для РОЖДЁННОЙ системы — детерминированная верификация в ГЛАВНОМ ПОТОКЕ.
+# Гейт Зворыкина для РОЖДЕННОЙ системы — детерминированная верификация в ГЛАВНОМ ПОТОКЕ.
 # Урок (apollon-v2 2026-06-23): финальный verify в фоновом рое виснет на MCP/транскрипт-операциях
-# (180с×6 → workflow failed). Дет-гейт скриптом в главном потоке дешевле и надёжнее перезапуска роя.
-# Зевс зовёт ЭТО после возврата pipeline со status=built, НЕ фоновый агент-испытатель.
+# (180с×6 → workflow failed). Дет-гейт скриптом в главном потоке дешевле и надежнее перезапуска роя.
+# Зевс зовет ЭТО после возврата pipeline со status=built, НЕ фоновый агент-испытатель.
 #
 # Usage: smoke/verify-born-system.sh <system_dir>
 # Exit 0 = ГОТОВА; exit 1 = ПРАВКИ (с перечнем дыр).
@@ -16,11 +16,11 @@ DIR="${DIR%/}"
 fail=0
 note() { printf '%s %s\n' "$1" "$2"; }
 
-# pipeline.js рождённой системы (<slug>-pipeline.js, один на папку)
+# pipeline.js рожденной системы (<slug>-pipeline.js, один на папку)
 WF="$(ls "$DIR"/*-pipeline.js 2>/dev/null | head -1)"
 if [ -z "$WF" ]; then note "❌" "нет <slug>-pipeline.js в $DIR"; fail=1; fi
 
-# 1. Синтаксис workflow (export→const + обёртка, top-level return легален).
+# 1. Синтаксис workflow (export→const + обертка, top-level return легален).
 if [ -n "$WF" ]; then
   tmp="$(mktemp /tmp/born-wf.XXXXXX.mjs)"
   { echo 'async function __wf(){'; sed 's/^export const /const /' "$WF"; echo '}'; } > "$tmp"

@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "family_id": "zarubinvibe-pantheon",
   "catalog_version": "2026-08-26",
   "project": {
@@ -10,6 +10,11 @@
   "visuals": {
     "style_anchor_sha256": "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2",
     "column_reference_sha256": "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd",
+    "presentation": {
+      "min_width": 1600,
+      "aspect_ratio": "16:9",
+      "readme_width": "100%"
+    },
     "hero": {
       "source_path": "docs/assets/pantheon/hero.png",
       "source_sha256": "b403eea6060c1dab5d764d47f9967bbeb11c75afab4bf7272be2328ccfa24997",
@@ -21,7 +26,58 @@
       "source_sha256": "c97c55fc0c609eff23db3c731472e3568c291079b48bb01d1427e195c883430c",
       "published_path": "docs/assets/pantheon/emblem.png",
       "published_sha256": "c97c55fc0c609eff23db3c731472e3568c291079b48bb01d1427e195c883430c"
-    }
+    },
+    "stages": [
+      {
+        "id": "specify",
+        "title_en": "Write the specification",
+        "title_ru": "Опишите задачу",
+        "diagram_en": "Specify",
+        "diagram_ru": "Спека"
+      },
+      {
+        "id": "observe",
+        "title_en": "Snapshot the local runtime",
+        "title_ru": "Снимите состояние среды",
+        "diagram_en": "Observe",
+        "diagram_ru": "Разведка"
+      },
+      {
+        "id": "cast",
+        "title_en": "Roles get their people",
+        "title_ru": "Роли получают исполнителей",
+        "diagram_en": "Cast",
+        "diagram_ru": "Роли"
+      },
+      {
+        "id": "architect",
+        "title_en": "Stages, gates, and a graph",
+        "title_ru": "Этапы, ворота и граф",
+        "diagram_en": "Architect",
+        "diagram_ru": "Архитектура"
+      },
+      {
+        "id": "economize",
+        "title_en": "Choose models and cut context",
+        "title_ru": "Выберите модели и срежьте контекст",
+        "diagram_en": "Economize",
+        "diagram_ru": "Экономия"
+      },
+      {
+        "id": "build",
+        "title_en": "Files are written out",
+        "title_ru": "Файлы записываются",
+        "diagram_en": "Build",
+        "diagram_ru": "Сборка"
+      },
+      {
+        "id": "test",
+        "title_en": "A tester returns a verdict",
+        "title_ru": "Тестировщик выдаёт вердикт",
+        "diagram_en": "Test",
+        "diagram_ru": "Проверка"
+      }
+    ]
   },
   "receipts": {
     "generation_path": ".github/pantheon/generation-receipt.json",

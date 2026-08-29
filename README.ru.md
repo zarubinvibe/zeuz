@@ -183,7 +183,7 @@ bash smoke/smoke.sh
 
 ## Звезда и вклад
 
-Пригодилось? Поставьте Zeuz звезду: [https://github.com/zarubinvibe/zeuz](https://github.com/zarubinvibe/zeuz). Это секунда, а от неё зависит, найдут ли проект другие люди.
+Пригодилось? Поставьте Zeuz звезду: [https://github.com/zarubinvibe/zeuz](https://github.com/zarubinvibe/zeuz). Это секунда, а от нее зависит, найдут ли проект другие люди.
 
 Хотите что-то поправить? Путь короткий: сделайте fork, заведите ветку, оформите commit, отправьте push и откройте Pull Request. Не отправляйте push прямо в `main`: релизный gate его отклонит.
 

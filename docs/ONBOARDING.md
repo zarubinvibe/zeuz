@@ -46,6 +46,10 @@ You need Bash and Node.js. You also need a workflow host: a program that execute
 
 9. **Review before you trust.** Open the generated project separately, read the gates, and run its own tests before letting it publish, archive, move or deploy anything.
 
+## Keeping it current
+
+Later, when a new version is published, do not clone it again: open the project in Claude Code and run `/zeuz-update`. It shows what changed first, pulls only fast-forward changes, leaves your settings and your data alone, and re-checks itself afterwards.
+
 ## If this helped
 
 If Zeuz saved you from inventing gates and logging one more time, give it a star: [https://github.com/zarubinvibe/zeuz](https://github.com/zarubinvibe/zeuz). It takes a second and decides whether other people ever find the project.

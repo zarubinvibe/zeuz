@@ -160,7 +160,7 @@
       "better": "架构和构建阶段的提示词强制要求这些检查，测试者在给出结论之前会亲自看它们。只有测试者点头，这次运行才会报告完成。",
       "how": "流水线在一个工作流宿主里按阶段运行。每个阶段都有角色、输入，以及一件你能读的产物。",
       "quick_intro": "你需要 Bash 和 Node.js。冒烟检查不调用任何模型，它证明工厂的源码还是完整的。",
-      "quick_extra": "没有 Git？下载 [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) 或 [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz)，在里面跑同样的检查。要真正造一套系统，把 `workflows/zeuz-pipeline.js` 注册到提供 `args`、`phase()`、`agent()` 和 `log()` 的宿主里，并设置 `ZEUZ_HOME` 与 `ZEUZ_PROJECTS`。",
+      "quick_extra": "没有 Git？下载 [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) 或 [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz)，在里面跑同样的检查。要真正造一套系统，先把 `workflows/zeuz-pipeline.js` 注册到工作流宿主里。宿主需要提供 `args`、`phase()`、`agent()` 和 `log()`。然后设置 `ZEUZ_HOME` 与 `ZEUZ_PROJECTS`。",
       "quick_result": "检查以一行通过的闸门结束，说明源码能被解析，必需的标记也都还在。",
       "compare": [
         [

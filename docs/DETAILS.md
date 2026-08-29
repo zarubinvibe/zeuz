@@ -4,13 +4,13 @@
 
 Zeuz is a workflow factory for agent harnesses. Given a complete specification, it asks a sequence of specialist agents to design, write, and inspect a new multi-agent workflow system.
 
-[Quickstart](#quickstart) · [Example](#example-run) · [Security](#security-and-privacy) · [Contributing](CONTRIBUTING.md) · [Русский](README.ru.md)
+[Quickstart](#quickstart) · [Example](#example-run) · [Security](#security-and-privacy) · [Contributing](../CONTRIBUTING.md) · [Русский](../README.ru.md)
 
 <p align="center">
-  <img src="docs/assets/pantheon/emblem.png" alt="Zeuz emblem with Zeus, a golden lightning bolt, a gated workflow graph, and a marble column" width="144">
+  <img src="../docs/assets/pantheon/emblem.png" alt="Zeuz emblem with Zeus, a golden lightning bolt, a gated workflow graph, and a marble column" width="144">
 </p>
 
-![Zeuz Pantheon hero showing Zeus beside a gated workflow graph and a classical marble column](docs/assets/pantheon/hero.png)
+![Zeuz Pantheon hero showing Zeus beside a gated workflow graph and a classical marble column](../docs/assets/pantheon/hero.png)
 
 > Current status: reference implementation. The repository includes the workflow source, agent prompts, design rules, and a static smoke test. It does not include a standalone runner or a full end-to-end fixture.
 
@@ -101,7 +101,7 @@ For reviewable evidence, keep the generated project in a separate directory, ins
 - Approvals: the repository describes approval gates but cannot enforce host permissions by itself.
 - Rollback: Zeuz does not undo generated writes. Use an isolated output directory and review the diff before accepting it.
 
-See [SECURITY.md](SECURITY.md) for the trust boundary and reporting guidance.
+See [SECURITY.md](../SECURITY.md) for the trust boundary and reporting guidance.
 
 ## Project map
 
@@ -129,7 +129,7 @@ Zeuz is a reference implementation, not a packaged CLI or SDK. No public release
 
 ## Contributing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md), keep changes scoped, and run:
+Read [CONTRIBUTING.md](../CONTRIBUTING.md), keep changes scoped, and run:
 
 ```bash
 bash smoke/smoke.sh
@@ -140,4 +140,4 @@ git diff --check
 
 Zeuz was created by Philipp Zarubin. The original workflow structure, agent personas, and earlier repository artwork remain in the project history and tracked assets.
 
-Licensed under the [MIT License](LICENSE). Copyright (c) 2026 Philipp Zarubin.
+Licensed under the [MIT License](../LICENSE). Copyright (c) 2026 Philipp Zarubin.

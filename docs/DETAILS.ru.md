@@ -4,13 +4,13 @@
 
 Zeuz - фабрика агентных workflow для совместимого host. Она принимает полную спецификацию, затем специалисты проектируют, записывают и проверяют новую многоагентную систему.
 
-[Быстрый старт](#быстрый-старт) · [Пример](#пример-запуска) · [Безопасность](#безопасность-и-приватность) · [Участие](CONTRIBUTING.md) · [English](README.md)
+[Быстрый старт](#быстрый-старт) · [Пример](#пример-запуска) · [Безопасность](#безопасность-и-приватность) · [Участие](../CONTRIBUTING.md) · [English](../README.md)
 
 <p align="center">
-  <img src="docs/assets/pantheon/emblem.png" alt="Эмблема Zeuz: Зевс, золотая молния, граф с воротами и мраморная колонна" width="144">
+  <img src="../docs/assets/pantheon/emblem.png" alt="Эмблема Zeuz: Зевс, золотая молния, граф с воротами и мраморная колонна" width="144">
 </p>
 
-![Светлый Pantheon hero Zeuz: Зевс рядом с управляемым графом workflow и классической колонной](docs/assets/pantheon/hero.png)
+![Светлый Pantheon hero Zeuz: Зевс рядом с управляемым графом workflow и классической колонной](../docs/assets/pantheon/hero.png)
 
 > Статус: reference implementation. В репозитории лежат исходник workflow, prompts агентов, правила проектирования и статический smoke-тест. Отдельного runner и полного end-to-end fixture пока нет.
 
@@ -101,7 +101,7 @@ Prompts архитектора и строителя требуют закрыв
 - Подтверждения: репозиторий описывает ворота, но сам не управляет правами host.
 - Откат: автоматического undo нет. Используй изолированный output-каталог и проверяй diff.
 
-Граница доверия и порядок сообщения об уязвимостях описаны в [SECURITY.md](SECURITY.md).
+Граница доверия и порядок сообщения об уязвимостях описаны в [SECURITY.md](../SECURITY.md).
 
 ## Карта проекта
 
@@ -129,7 +129,7 @@ Zeuz пока reference implementation, а не готовый CLI или SDK. �
 
 ## Как помочь проекту
 
-Прочитай [CONTRIBUTING.md](CONTRIBUTING.md), не раздувай scope и запусти:
+Прочитай [CONTRIBUTING.md](../CONTRIBUTING.md), не раздувай scope и запусти:
 
 ```bash
 bash smoke/smoke.sh
@@ -140,4 +140,4 @@ git diff --check
 
 Zeuz создал Philipp Zarubin. Исходная структура workflow, персоны агентов и ранние иллюстрации остаются в истории Git и каталоге `docs/assets/`.
 
-Код распространяется по [MIT License](LICENSE). Copyright (c) 2026 Philipp Zarubin.
+Код распространяется по [MIT License](../LICENSE). Copyright (c) 2026 Philipp Zarubin.

@@ -14,16 +14,16 @@
     "en": {
       "title": "Zeuz",
       "name": "Zeuz",
-      "tagline": "Zeuz turns a written specification into a multi-agent workflow with roles, gates, observability, and a verdict.",
+      "tagline": "Zeuz builds a multi-agent system from your specification: roles, stages, gates, and a tester who tells the truth.",
       "hero_alt": "Zeus in white marble with a golden lightning bolt beside the classical column, a governed workflow graph unfolding in daylight",
-      "what": "Zeuz is a factory for agent workflows. You give it a complete specification; a sequence of specialist agents designs the system, writes its files, and inspects the result. The output is a new project folder, not a running service.",
-      "why": "Writing a multi-agent system by hand means inventing roles, stages, gates, and logging from scratch every time, and forgetting one of them every time. Zeuz keeps that structure as a repeatable pipeline with a tester at the end.",
-      "advantage": "the generated system is required to protect irreversible actions with deterministic checks.",
-      "better": "The architect and builder prompts demand those checks, and the tester inspects them before returning a verdict. A run reports `done` only when the tester agrees.",
-      "how": "The pipeline runs as ordered phases inside a workflow host. Each phase has a role, an input, and an artifact you can read.",
-      "quick_intro": "You need Bash and Node.js. The smoke check runs without any model and proves the factory source is still intact.",
+      "what": "Zeuz is a factory. You bring a complete specification, it builds the agent system from it: roles are cast, stages laid out, gates put in front of anything irreversible, and at the end a tester looks at the result. What you get is a project folder. Not a service, not a run button, a folder you can read.",
+      "why": "Every new agent system gets invented from scratch. Roles, stages, logging, gates. Gates are forgotten first, because they are the part that gets in the way. Zeuz holds that structure for you and will not let the inconvenient half be dropped.",
+      "advantage": "an irreversible step has to sit behind a check you can see.",
+      "better": "The architect and builder prompts demand it, and before giving a verdict the tester goes and looks at whether those gates are actually there. A run reports done only after it agrees.",
+      "how": "The pipeline moves in phases inside your host. Every phase has its role, its input, and an artifact you can open and read.",
+      "quick_intro": "You need Bash and Node.js. The check calls no model at all: it looks at whether the factory source is intact.",
       "quick_extra": "No Git? Download [the ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) or [the tarball](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) and run the same check inside. To build something real, register `workflows/zeuz-pipeline.js` with a workflow host that provides `args`, `phase()`, `agent()`, and `log()`, then set `ZEUZ_HOME` and `ZEUZ_PROJECTS`. First time here? Open the project in Claude Code and run `/zeuz-setup`: the install goes as a conversation, one question at a time, and nothing happens without your yes.",
-      "quick_result": "the check ends with a passing gate line, which proves the source parses and still carries its required markers.",
+      "quick_result": "the check ends on a passing gate line: Node parses the pipeline and the required markers are still there.",
       "compare": [
         [
           "**Zeuz**",
@@ -68,8 +68,8 @@
         "Telemetry: there is no remote telemetry client; snapshots are local files.",
         "Rollback: Zeuz does not undo generated writes, so use a separate output directory and review the diff."
       ],
-      "safety_tail": "See [SECURITY.md](SECURITY.md) for the trust boundary and how to report a problem.",
-      "status": "Status: reference implementation. The repository holds the workflow source, agent prompts, rules, and a static smoke check.",
+      "safety_tail": "The trust boundary and how to report a problem are in [SECURITY.md](SECURITY.md).",
+      "status": "Status: reference implementation. Source, prompts, rules, and a static check. No runner.",
       "limits": [
         "There is no bundled workflow host adapter and no packaged CLI.",
         "The smoke check inspects source and markers; it does not execute a complete generated system.",
@@ -77,23 +77,23 @@
         "Agent verdicts are model output: treat generated code and claims as untrusted until your own checks pass.",
         "The optional observability binary may be missing, and the run records that instead of failing quietly."
       ],
-      "docs": "Deeper reading: [the full reference](docs/DETAILS.md), [the roadmap](specs/00-roadmap.md), [construction rules](rules/best-practices.md), and the [decision records](docs/decisions/).",
+      "docs": "Deeper: [the full reference](docs/DETAILS.md), [the roadmap](specs/00-roadmap.md), [construction rules](rules/best-practices.md), [decision records](docs/decisions/).",
       "license": "MIT. See [LICENSE](LICENSE). Zeuz was created by Filipp Zarubin.",
       "welcome": "Hello. Every time I needed a new system out of agents, I invented the same things again: roles, stages, gates, logging. Something was always forgotten, usually the gates.\n\nZeuz keeps that structure so I stop rebuilding it. It is a factory, not a service: you give it a specification, it hands you a project folder and a tester's honest verdict."
     },
     "ru": {
       "title": "Zeuz",
       "name": "Zeuz",
-      "tagline": "Zeuz превращает written-спеку в многоагентный workflow с ролями, воротами, наблюдаемостью и вердиктом.",
+      "tagline": "Zeuz собирает многоагентную систему по вашей спеке: роли, этапы, ворота и тестировщика, который скажет правду.",
       "hero_alt": "Зевс из белого мрамора с золотой молнией у классической колонны, управляемый граф workflow разворачивается в дневном свете",
-      "what": "Zeuz это фабрика агентных workflow. Вы даёте полную спеку, а дальше цепочка специализированных агентов проектирует систему, пишет её файлы и проверяет результат. На выходе новая папка проекта, а не запущенный сервис.",
-      "why": "Писать многоагентную систему руками значит каждый раз заново придумывать роли, этапы, ворота и логи и каждый раз про что-то забывать. Zeuz держит эту структуру повторяемым конвейером, в конце которого стоит тестировщик.",
-      "advantage": "у сгенерированной системы необратимые действия обязаны быть закрыты детерминированными проверками.",
-      "better": "Промпты архитектора и сборщика требуют этих проверок, а тестировщик смотрит на них до вердикта. Прогон отвечает `done`, только если тестировщик согласен.",
-      "how": "Конвейер идёт упорядоченными фазами внутри workflow-хоста. У каждой фазы есть роль, вход и артефакт, который можно прочитать.",
-      "quick_intro": "Нужны Bash и Node.js. Проверка smoke идёт без единой модели и доказывает, что исходник фабрики цел.",
+      "what": "Zeuz это фабрика. Вы приносите полную спеку, он собирает по ней систему из агентов: раздаёт роли, раскладывает этапы, ставит ворота перед необратимым и в конце отдаёт всё тестировщику. Вы получаете папку с проектом. Не сервис, не кнопку «запустить», а папку, которую можно прочитать.",
+      "why": "Каждую новую систему из агентов приходится придумывать заново. Роли, этапы, логи, ворота. Ворота забываются первыми, потому что они мешают. Zeuz держит эту структуру за вас и не даёт выкинуть неудобную часть.",
+      "advantage": "необратимые шаги обязаны быть закрыты проверкой, которую видно.",
+      "better": "Этого требуют промпты архитектора и сборщика, а тестировщик перед вердиктом идёт и смотрит, стоят ли ворота на месте. Прогон отвечает «готово» только после его согласия.",
+      "how": "Конвейер идёт фазами внутри вашего хоста. У каждой фазы своя роль, свой вход и артефакт, который можно открыть и прочитать.",
+      "quick_intro": "Нужны Bash и Node.js. Проверка не зовёт ни одной модели: она смотрит, цел ли исходник фабрики.",
       "quick_extra": "Нет Git? Скачайте [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) или [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz) и запустите ту же проверку внутри. Чтобы собрать настоящую систему, зарегистрируйте `workflows/zeuz-pipeline.js` в workflow-хосте, который даёт `args`, `phase()`, `agent()` и `log()`, и задайте `ZEUZ_HOME` и `ZEUZ_PROJECTS`. Первый раз? Откройте проект в Claude Code и запустите `/zeuz-setup`: установка пройдёт разговором, по одному вопросу, и ничего не произойдёт без вашего «да».",
-      "quick_result": "проверка заканчивается строкой пройденного гейта, а это значит, что исходник разбирается и все обязательные маркеры на месте.",
+      "quick_result": "проверка заканчивается строкой пройденного гейта: Node разбирает конвейер, обязательные маркеры на месте.",
       "compare": [
         [
           "**Zeuz**",
@@ -139,7 +139,7 @@
         "Откат: Zeuz не отменяет записанное, поэтому держите отдельную выходную папку и смотрите diff."
       ],
       "safety_tail": "Границы доверия и порядок сообщения о проблеме описаны в [SECURITY.md](SECURITY.md).",
-      "status": "Статус: эталонная реализация. В репозитории лежат исходник workflow, промпты агентов, правила и статическая проверка smoke.",
+      "status": "Статус: эталонная реализация. Исходник, промпты, правила и статическая проверка. Раннера нет.",
       "limits": [
         "Готового адаптера к workflow-хосту нет, упакованного CLI тоже.",
         "Проверка smoke смотрит исходник и маркеры, а не исполняет собранную систему целиком.",
@@ -147,23 +147,23 @@
         "Вердикты агентов это вывод модели: считайте сгенерированный код и утверждения непроверенными, пока не пройдут ваши проверки.",
         "Необязательный бинарь наблюдаемости может отсутствовать, и прогон это записывает, а не падает молча."
       ],
-      "docs": "Глубже: [полный разбор](docs/DETAILS.ru.md), [дорожная карта](specs/00-roadmap.md), [правила сборки](rules/best-practices.md) и [записи решений](docs/decisions/).",
+      "docs": "Глубже: [полный разбор](docs/DETAILS.ru.md), [дорожная карта](specs/00-roadmap.md), [правила сборки](rules/best-practices.md), [записи решений](docs/decisions/).",
       "license": "MIT. Текст в файле [LICENSE](LICENSE). Zeuz создал Филипп Зарубин.",
       "welcome": "Привет. Каждый раз, когда мне была нужна новая система из агентов, я заново придумывал одно и то же: роли, этапы, ворота, логи. Что-то обязательно забывалось, чаще всего ворота.\n\nZeuz держит эту структуру, чтобы я не собирал её заново. Это фабрика, а не сервис: даёшь спеку, получаешь папку проекта и честный вердикт тестировщика."
     },
     "zh": {
       "title": "Zeuz",
       "name": "Zeuz",
-      "tagline": "Zeuz 把一份写清楚的规格变成带角色、闸门、可观测性和结论的多智能体工作流。",
+      "tagline": "Zeuz 按你的规格搭出多智能体系统：角色、阶段、闸门，以及一个说真话的测试者。",
       "hero_alt": "白色大理石的宙斯手持金色闪电站在古典石柱旁，一张受管控的工作流图在日光里展开",
-      "what": "Zeuz 是一座智能体工作流的工厂。你给它一份完整的规格，一串专职智能体设计这套系统、写出文件并检查结果。产出是一个新的项目目录，而不是一个跑着的服务。",
-      "why": "手写多智能体系统，意味着每次都要重新想角色、阶段、闸门和日志，也意味着每次都会漏掉其中一样。Zeuz 把这套结构固定成可重复的流水线，末尾站着一个测试者。",
-      "advantage": "生成出来的系统必须用确定性的检查守住不可逆的动作。",
-      "better": "架构和构建阶段的提示词强制要求这些检查，测试者在给出结论之前会亲自看它们。只有测试者点头，这次运行才会报告完成。",
-      "how": "流水线在一个工作流宿主里按阶段运行。每个阶段都有角色、输入，以及一件你能读的产物。",
-      "quick_intro": "你需要 Bash 和 Node.js。冒烟检查不调用任何模型，它证明工厂的源码还是完整的。",
+      "what": "Zeuz 是一座工厂。你拿来一份完整规格，它照着搭出系统：分配角色、排出阶段、在不可逆的地方放上闸门，最后交给测试者看。你拿到的是一个项目目录。不是服务，不是一个运行按钮，是一个能读的目录。",
+      "why": "每做一套新的智能体系统，都要从头再想一遍：角色、阶段、日志、闸门。最先被忘掉的总是闸门，因为它碍事。Zeuz 替你把这套结构守住，不许把碍事的那一半扔掉。",
+      "advantage": "不可逆的步骤必须挡在一道看得见的检查后面。",
+      "better": "架构和构建的提示词都这么要求，而测试者在下结论之前会去看这些闸门是不是真的在。只有它点头，这次运行才报告完成。",
+      "how": "流水线在你的宿主里按阶段走。每个阶段有自己的角色、输入，以及一件你能打开来读的产物。",
+      "quick_intro": "需要 Bash 和 Node.js。这个检查不调用任何模型：它只看工厂的源码是否完整。",
       "quick_extra": "没有 Git？下载 [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) 或 [tar.gz](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.tar.gz)，在里面跑同样的检查。要真正造一套系统，先把 `workflows/zeuz-pipeline.js` 注册到工作流宿主里。宿主需要提供 `args`、`phase()`、`agent()` 和 `log()`。然后设置 `ZEUZ_HOME` 与 `ZEUZ_PROJECTS`。 第一次用？在 Claude Code 里打开项目并运行 `/zeuz-setup`：安装以对话方式进行，一次问一个问题，没有你的同意不会发生任何事。",
-      "quick_result": "检查以一行通过的闸门结束，说明源码能被解析，必需的标记也都还在。",
+      "quick_result": "检查以一行通过的闸门结束：Node 能解析流水线，必需的标记都还在。",
       "compare": [
         [
           "**Zeuz**",
@@ -208,8 +208,8 @@
         "遥测：没有远程遥测客户端，快照都是本地文件。",
         "回滚：Zeuz 不会撤销已经写下的内容，请用单独的输出目录并检查差异。"
       ],
-      "safety_tail": "信任边界和问题上报方式写在 [SECURITY.md](SECURITY.md) 里。",
-      "status": "状态：参考实现。仓库里有工作流源码、智能体提示词、规则和一个静态冒烟检查。",
+      "safety_tail": "信任边界和上报方式写在 [SECURITY.md](SECURITY.md)。",
+      "status": "状态：参考实现。源码、提示词、规则和一个静态检查。没有运行器。",
       "limits": [
         "没有现成的工作流宿主适配器，也没有打包好的命令行。",
         "冒烟检查看的是源码和标记，不会完整执行生成出来的系统。",
@@ -217,7 +217,7 @@
         "智能体的结论仍然是模型输出：在你自己的检查通过之前，把生成的代码和说法都当作未经证实。",
         "可选的可观测性程序可能不存在，这时运行会如实记录，而不是安静地失败。"
       ],
-      "docs": "想看得更深：[完整参考](docs/DETAILS.md)、[路线图](specs/00-roadmap.md)、[构建规则](rules/best-practices.md) 和 [决策记录](docs/decisions/)。",
+      "docs": "想更深：[完整参考](docs/DETAILS.md)、[路线图](specs/00-roadmap.md)、[构建规则](rules/best-practices.md)、[决策记录](docs/decisions/)。",
       "license": "MIT。见 [LICENSE](LICENSE)。Zeuz 由 Filipp Zarubin 创建。",
       "welcome": "你好。每次我需要一套新的智能体系统，都要把同样的东西重新想一遍：角色、阶段、闸门、日志。总有一样被忘掉，通常是闸门。\n\nZeuz 把这套结构固定下来，这样我就不用一再重建。它是工厂，不是服务：你给规格，它给你一个项目目录和测试者诚实的结论。"
     }

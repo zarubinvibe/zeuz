@@ -1,6 +1,6 @@
 # Zeuz
 
-Zeuz turns a written specification into a multi-agent workflow with roles, gates, observability, and a verdict.
+Zeuz builds a multi-agent system from your specification: roles, stages, gates, and a tester who tells the truth.
 
 [Русский](README.ru.md) · [中文](README.zh.md)
 
@@ -35,21 +35,21 @@ Zeuz turns a written specification into a multi-agent workflow with roles, gates
 
 ## What This Is
 
-Zeuz is a factory for agent workflows. You give it a complete specification; a sequence of specialist agents designs the system, writes its files, and inspects the result. The output is a new project folder, not a running service.
+Zeuz is a factory. You bring a complete specification, it builds the agent system from it: roles are cast, stages laid out, gates put in front of anything irreversible, and at the end a tester looks at the result. What you get is a project folder. Not a service, not a run button, a folder you can read.
 
 ## Why It Helps
 
-Writing a multi-agent system by hand means inventing roles, stages, gates, and logging from scratch every time, and forgetting one of them every time. Zeuz keeps that structure as a repeatable pipeline with a tester at the end.
+Every new agent system gets invented from scratch. Roles, stages, logging, gates. Gates are forgotten first, because they are the part that gets in the way. Zeuz holds that structure for you and will not let the inconvenient half be dropped.
 
 ## The Main Advantage
 
-**Main advantage:** the generated system is required to protect irreversible actions with deterministic checks.
+**Main advantage:** an irreversible step has to sit behind a check you can see.
 
-**Why this is better:** The architect and builder prompts demand those checks, and the tester inspects them before returning a verdict. A run reports `done` only when the tester agrees.
+**Why this is better:** The architect and builder prompts demand it, and before giving a verdict the tester goes and looks at whether those gates are actually there. A run reports done only after it agrees.
 
 ## How It Works
 
-The pipeline runs as ordered phases inside a workflow host. Each phase has a role, an input, and an artifact you can read.
+The pipeline moves in phases inside your host. Every phase has its role, its input, and an artifact you can open and read.
 
 <!-- workflow-diagram:start -->
 
@@ -123,7 +123,7 @@ The tester inspects the generated system across those dimensions and reports fin
 
 ## Quickstart
 
-You need Bash and Node.js. The smoke check runs without any model and proves the factory source is still intact.
+You need Bash and Node.js. The check calls no model at all: it looks at whether the factory source is intact.
 
 ```bash
 git clone https://github.com/zarubinvibe/zeuz.git
@@ -135,7 +135,7 @@ No Git? Download [the ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/head
 
 Never done this before? [The onboarding](docs/ONBOARDING.md) walks the whole first run step by step and says what you see after every command.
 
-**You get:** the check ends with a passing gate line, which proves the source parses and still carries its required markers.
+**You get:** the check ends on a passing gate line: Node parses the pipeline and the required markers are still there.
 
 ## Simple Comparison
 
@@ -167,11 +167,11 @@ Never done this before? [The onboarding](docs/ONBOARDING.md) walks the whole fir
 - Telemetry: there is no remote telemetry client; snapshots are local files.
 - Rollback: Zeuz does not undo generated writes, so use a separate output directory and review the diff.
 
-See [SECURITY.md](SECURITY.md) for the trust boundary and how to report a problem.
+The trust boundary and how to report a problem are in [SECURITY.md](SECURITY.md).
 
 ## Limits
 
-Status: reference implementation. The repository holds the workflow source, agent prompts, rules, and a static smoke check.
+Status: reference implementation. Source, prompts, rules, and a static check. No runner.
 
 - There is no bundled workflow host adapter and no packaged CLI.
 - The smoke check inspects source and markers; it does not execute a complete generated system.
@@ -179,7 +179,7 @@ Status: reference implementation. The repository holds the workflow source, agen
 - Agent verdicts are model output: treat generated code and claims as untrusted until your own checks pass.
 - The optional observability binary may be missing, and the run records that instead of failing quietly.
 
-Deeper reading: [the full reference](docs/DETAILS.md), [the roadmap](specs/00-roadmap.md), [construction rules](rules/best-practices.md), and the [decision records](docs/decisions/).
+Deeper: [the full reference](docs/DETAILS.md), [the roadmap](specs/00-roadmap.md), [construction rules](rules/best-practices.md), [decision records](docs/decisions/).
 
 ## Star And Contribute
 

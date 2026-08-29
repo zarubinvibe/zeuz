@@ -1,2 +1,5 @@
 runs/
 .DS_Store
+
+# Knowledge graph rebuilt on demand; never committed.
+graphify-out/

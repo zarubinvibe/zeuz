@@ -4,7 +4,7 @@ export const meta = {
   whenToUse: 'Вызывается Зевсом ПОСЛЕ /grill-me (Стадия 0 собрала спеку). Workflow({ name: "zeuz-pipeline", args: <спека> }).',
   phases: [
     { title: 'Observe', detail: 'abtop runtime snapshot + CTX gate' },
-    { title: 'Cast', detail: 'Марков: персоны-учёные по ролям (верификация)' },
+    { title: 'Cast', detail: 'Марков: персоны-ученые по ролям (верификация)' },
     { title: 'Architect', detail: 'Шухов: стадии, рой, ворота полноты' },
     { title: 'Economize', detail: 'Котельников: токеносбережение + модель по функции' },
     { title: 'Build', detail: 'Лебедев: пишет агенты/*.md, workflow.js, Протокол, CLAUDE' },
@@ -46,7 +46,7 @@ phase('Observe')
 const observeStart = await observeRun('start')
 // CTX-гейт фабрики измеряет ГЛАВНЫЙ чат, но мастера работают в ИЗОЛИРОВАННЫХ субагентах — их контекст свой.
 // Высокий CTX главного чата блокирует только финальное чтение результата человеком, не постройку. → WARN, не STOP.
-// Жёсткий STOP только при явном CTX_HARD_STOP в спеке.
+// Жесткий STOP только при явном CTX_HARD_STOP в спеке.
 if (String(observeStart).indexOf('STOP_CTX_90') !== -1 && A.indexOf('CTX_HARD_STOP') !== -1) {
   return { error: 'ctx_too_high', run_id: RUN_ID, message: 'CTX >= 90% + CTX_HARD_STOP. Новый чат/сжатие.', observability_log: OBS_LOG }
 }
@@ -58,8 +58,8 @@ if (String(observeStart).indexOf('STOP_CTX_90') !== -1) {
 phase('Cast')
 const cast = await agent(
   'Ты — МАРКОВ, Кастинг душ фабрики Зевс. Прочитай конституцию ' + CONST + '.\n\nСПЕКА новой системы:\n' + A + '\n\n' +
-  'Определи роли системы (census/триаж/процессор/сверка/архив/надзиратель — или иные под домен) и подбери под КАЖДУЮ реального русского учёного-ИЗОБРЕТАТЕЛЯ (создал новое), чья жизнь-метафора = функция. ВЕРИФИЦИРУЙ годы+вклад по web (Firecrawl→sgai→WebSearch). НЕ повторяй занятых (Фемида-юристы; Мнемозина: Кирилов/Сопиков/Ломоносов/Менделеев/Калачов; Зевс: Лобачевский/Шухов/Котельников/Марков/Лебедев/Зворыкин). Не выдумывай даты.\n' +
-  'ИМЕНОВАНИЕ: system_name = дисплей-имя (можно кириллицей, напр. «Аполлон»). system_slug = латинский kebab для папки/файлов проекта (напр. apollon). Правило S→Z применяется ТОЛЬКО к имени системы (Zeus→Zeuz), НЕ к именам агентов. Для КАЖДОЙ роли верни name_slug — латинская фамилия учёного (напр. lebedev, shukhov) для имени файла агента; кириллица допустима только внутри души.\n' +
+  'Определи роли системы (census/триаж/процессор/сверка/архив/надзиратель — или иные под домен) и подбери под КАЖДУЮ реального русского ученого-ИЗОБРЕТАТЕЛЯ (создал новое), чья жизнь-метафора = функция. ВЕРИФИЦИРУЙ годы+вклад по web (Firecrawl→sgai→WebSearch). НЕ повторяй занятых (Фемида-юристы; Мнемозина: Кирилов/Сопиков/Ломоносов/Менделеев/Калачов; Зевс: Лобачевский/Шухов/Котельников/Марков/Лебедев/Зворыкин). Не выдумывай даты.\n' +
+  'ИМЕНОВАНИЕ: system_name = дисплей-имя (можно кириллицей, напр. «Аполлон»). system_slug = латинский kebab для папки/файлов проекта (напр. apollon). Правило S→Z применяется ТОЛЬКО к имени системы (Zeus→Zeuz), НЕ к именам агентов. Для КАЖДОЙ роли верни name_slug — латинская фамилия ученого (напр. lebedev, shukhov) для имени файла агента; кириллица допустима только внутри души.\n' +
   'Верни JSON: { "system_name", "system_slug", "roles":[{"role","name","name_slug","dates","invention","metaphor","model"}] }',
   { label: 'cast', phase: 'Cast', agentType: 'general-purpose', model: 'sonnet', schema: {
     type: 'object', required: ['system_name', 'system_slug', 'roles'], properties: {
@@ -73,7 +73,7 @@ const cast = await agent(
 phase('Architect')
 const arch = await agent(
   'Ты — ШУХОВ, Архитектор фабрики Зевс. Конституция: ' + CONST + '. ' + SAMPLES + '\n\nСПЕКА:\n' + A + '\nРОЛИ:\n' + JSON.stringify(cast.roles) + '\n\n' +
-  'Спроектируй скелет системы по ИНВАРИАНТУ из спеки. Стадии; где рой параллельный (независимые юниты), где барьер. ВОРОТА полноты: каждое необратимое действие (архив/публикация/mv) → маркер `## ИМЯ ✓` перед ним, что охраняет, как проверяется КОДОМ. Граф конвейера. Точки рой-масштаба (объём → волнами).\n' +
+  'Спроектируй скелет системы по ИНВАРИАНТУ из спеки. Стадии; где рой параллельный (независимые юниты), где барьер. ВОРОТА полноты: каждое необратимое действие (архив/публикация/mv) → маркер `## ИМЯ ✓` перед ним, что охраняет, как проверяется КОДОМ. Граф конвейера. Точки рой-масштаба (объем → волнами).\n' +
   'Верни JSON: { "stages":[{"name","agent_role","parallel":bool}], "gates":[{"marker","guards","check"}], "graph", "swarm_note" }',
   { label: 'arch', phase: 'Architect', agentType: 'general-purpose', model: 'opus', schema: {
     type: 'object', required: ['stages', 'gates'], properties: {
@@ -86,7 +86,7 @@ const arch = await agent(
 phase('Economize')
 const econ = await agent(
   'Ты — КОТЕЛЬНИКОВ, Эконом токенов фабрики Зевс. Конституция (§5,§8): ' + CONST + '\n\nАРХИТЕКТУРА:\n' + JSON.stringify(arch.stages) + '\n\n' +
-  'К каждой стадии приложи токеносбережение (hash-cache · markitdown · локальный OCR/embed · тяжёлое-чтение→субагент · разведка→полный · max_tool_output_chars · compressToolResults) где применимо. Назначь модель по функции: механика→Haiku, синтез/ворота→Sonnet, product-critical/необратимое/спорное→Opus. Добавь budget caps и CTX-gates для больших стадий.\n' +
+  'К каждой стадии приложи токеносбережение (hash-cache · markitdown · локальный OCR/embed · тяжелое-чтение→субагент · разведка→полный · max_tool_output_chars · compressToolResults) где применимо. Назначь модель по функции: механика→Haiku, синтез/ворота→Sonnet, product-critical/необратимое/спорное→Opus. Добавь budget caps и CTX-gates для больших стадий.\n' +
   'Верни JSON: { "savers":[{"stage","mechanisms"}], "model_map":[{"stage","model","why"}] }',
   { label: 'econ', phase: 'Economize', agentType: 'general-purpose', model: 'sonnet', schema: {
     type: 'object', required: ['model_map'], properties: {
@@ -134,8 +134,8 @@ const build = await agent(
 // ---------- 5. Зворыкин — испытание В ГЛАВНОМ ПОТОКЕ (не в рое) ----------
 // Урок apollon-v2 (2026-06-23): фоновый агент-испытатель виснет на MCP/транскрипт-операциях
 // (node --check + рой grep + dry-run → no-progress 180с×6 → workflow failed). Та же болезнь,
-// что дефект #1 у детей: интерактив/тяжёлая проверка в фоне зависает. Лечение — ИНВЕРСИЯ:
-// рой строит, дет-гейт Зворыкина прогоняет ГЛАВНЫЙ ПОТОК скриптом (дёшево, не виснет, не резюмится).
+// что дефект #1 у детей: интерактив/тяжелая проверка в фоне зависает. Лечение — ИНВЕРСИЯ:
+// рой строит, дет-гейт Зворыкина прогоняет ГЛАВНЫЙ ПОТОК скриптом (дешево, не виснет, не резюмится).
 const sysDir = build.system_dir || targetDir
 await observeRun('end')
 
